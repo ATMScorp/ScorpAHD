@@ -19,7 +19,7 @@ Aplikacja została stworzona przy użyciu Spring Boot i Angular.
 2. Utwórz bazę danych `academic_db`.
 3. Wypełnij plik `application.yml` w folderze `src/main/resources` danymi dotyczącymi połączenia z bazą danych:
 
-//yaml
+```yaml
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/academic_db  # URL do Twojej bazy danych MySQL
@@ -35,6 +35,7 @@ spring:
         format_sql: true  # Formatowanie zapytań SQL dla lepszej czytelności
     database: mysql  # Typ bazy danych (MySQL)
     database-platform: org.hibernate.dialect.MySQLDialect  # Dialekt MySQL dla Hibernate
+```
 
 ## Uruchamianie części serwerowej (Spring Boot)
 
