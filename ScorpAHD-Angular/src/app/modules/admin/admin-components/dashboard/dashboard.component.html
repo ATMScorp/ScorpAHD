@@ -1,0 +1,37 @@
+<table class="student-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Field Of Study</th>
+            <th>Date Of Birth</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Room Number</th>
+            <th>Academic Year</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students; let i = index">
+            <td>{{ student.id}}</td>
+            <td>{{ student.firstName }}</td>
+            <td>{{ student.secondName }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.department }}</td>
+            <td>{{ student.fieldOfStudy }}</td>
+            <td>{{ student.dateOfBirth | date: 'MMM, dd, YYYY' }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.gender }}</td>
+            <td>{{ student.roomNumber }}</td>
+            <td>{{ student.academicYear }}</td>
+            <td class="action-buttons">
+                <button class="update-button" routerLink="/admin/dashboard/update/{{student.id}}">Update</button>
+                <button class="delete-button" (click)="deleteStudent(student.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
