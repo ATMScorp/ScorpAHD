@@ -5,19 +5,19 @@
             <form class="login-form" [formGroup]="loginForm">
 
                 <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Email</mat-label>
+                    <mat-label class="label-container"><mat-icon class="icon">person</mat-icon>Email</mat-label>
                     <input matInput type="email" placeholder="Enter Email" formControlName="email"/>
                     <mat-error *ngIf="loginForm.get('email')?.hasError('required')">This Input Is Required!</mat-error>
-                    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Please enter adress.</mat-error>
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email address.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
-                    <mat-label>Password</mat-label>
+                    <mat-label class="label-container"><mat-icon class="icon">lock</mat-icon>Password</mat-label>
                     <input matInput type="password" placeholder="Password" formControlName="password"/>
                     <mat-error *ngIf="loginForm.get('password')?.hasError('required')">This Input Is Required!</mat-error>
                 </mat-form-field>
 
-                <button mat-raised-button [class.active]="loginForm.valid" (click)="login()" [disabled]="loginForm.invalid">Login</button>
+                <button mat-raised-button [class.active]="loginForm.valid" (click)="login()" [disabled]="loginForm.invalid">Log in</button>
             </form>
         </div>
     </div>

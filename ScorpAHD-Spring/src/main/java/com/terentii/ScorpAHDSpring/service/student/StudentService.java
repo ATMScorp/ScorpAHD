@@ -4,7 +4,7 @@ import com.terentii.ScorpAHDSpring.model.SingleStudentDto;
 import com.terentii.ScorpAHDSpring.model.StudentDto;
 
 public interface StudentService {
-    SingleStudentDto getStudentById(Integer studentId);
+    SingleStudentDto getStudentById(Long studentId);
 
-    StudentDto updateStudent(Integer studentId, StudentDto studentDto);
+    StudentDto updateStudent(Long studentId, StudentDto studentDto);
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentService } from '../../student-service/student.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -146,24 +146,34 @@ export class UpdateStudentComponent {
 
   ACADEMIC_YEARS: string[] = ["I", "II", "III", "IV", "V"];
 
-  ROOM_NUMBER: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  ROOM_NUMBER: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                           "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                           "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+                           "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",];
 
   constructor(private studentService: StudentService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar) {}
 
+    comfirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+      if (!control.value) {
+        return { required: true };
+      } else if (control.value !== this.validateForm.controls["password"].value) {
+        return { confirm: true, error: true };
+      }
+      return {};
+    }
   ngOnInit() {
     this.validateForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       firstName: ['', Validators.required],
       secondName: ['', Validators.required],
       address: ['', Validators.required],
-      gender: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       department: ['', Validators.required],
       fieldOfStudy: ['', Validators.required],
       academicYear: ['', Validators.required],
-      roomNumber: ['', Validators.required]
+      password: ['', Validators.required],
+      checkPassword: ['', [Validators.required, this.comfirmationValidator]],
     });
     this.getStudentById();
   }

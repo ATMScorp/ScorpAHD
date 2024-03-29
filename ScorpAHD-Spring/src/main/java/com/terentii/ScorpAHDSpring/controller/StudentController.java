@@ -19,7 +19,7 @@ public class StudentController {
     }
 
     @GetMapping("/profile/{studentId}")
-    public ResponseEntity<SingleStudentDto> getStudentById(@PathVariable Integer studentId) {
+    public ResponseEntity<SingleStudentDto> getStudentById(@PathVariable Long studentId) {
         SingleStudentDto singleStudentDto = studentService.getStudentById(studentId);
         if (singleStudentDto == null)
             return ResponseEntity.notFound().build();
@@ -27,11 +27,10 @@ public class StudentController {
     }
 
     @PostMapping("/update/{studentId}")
-    public ResponseEntity<?> updateStudent(@PathVariable Integer studentId, @RequestBody StudentDto studentDto){
+    public ResponseEntity<?> updateStudent(@PathVariable Long studentId, @RequestBody StudentDto studentDto){
         StudentDto createdStudentDto = studentService.updateStudent(studentId, studentDto);
         if (createdStudentDto == null)
             return new ResponseEntity<>("Something went wrong.", HttpStatus.BAD_REQUEST);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdStudentDto);
     }
-
 }

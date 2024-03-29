@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from '../../../auth/services/storage/storage.service';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 const BASIC_URL = "http://localhost:8080/";
 
@@ -41,6 +41,47 @@ export class AdminService {
       headers: this.createAuthorizationHeader(),
     });
   }
+
+  sendMail(to: string, cc: string | null, subject: string, body: string, attachments: File[] | null): Observable<any> {
+    const headers = this.createAuthorizationHeader();
+    const formData = new FormData();
+    formData.append('to', to);
+    
+    if (cc && typeof cc === 'string') {
+      formData.append('cc', cc);
+    } else if (cc && Array.isArray(cc)) {
+      cc.forEach((ccItem: string) => {
+        formData.append('cc', ccItem);
+      });
+    }
+    
+    formData.append('subject', subject);
+    formData.append('body', body);
+  
+    if (attachments) {
+      attachments.forEach((file: File) => {
+        formData.append('files', file);
+      });
+    }
+  
+    return this.http.post<any>(BASIC_URL + "admin/send", formData, { headers });
+  }
+  
+  sendMailToAll(subject: string, body: string, attachments: File[] | null): Observable<any> {
+    const headers = this.createAuthorizationHeader();
+    const formData = new FormData();
+    formData.append('subject', subject);
+    formData.append('body', body);
+  
+    if (attachments) {
+      attachments.forEach((file: File) => {
+        formData.append('files', file);
+      });
+    }
+  
+    return this.http.post<any>(BASIC_URL + "admin/send/send-to-all", formData, { headers });
+  }
+  
 
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();

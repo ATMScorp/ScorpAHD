@@ -1,0 +1,67 @@
+.bg {
+    margin-top: 50px;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.child {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-title {
+    margin-left: 130px;
+    margin-top: 130px;
+    margin-bottom: 30px;
+}
+
+.mail-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.file-name {
+    margin-left: 1rem;
+}
+
+.button {
+    background-color: #c7c6c6;
+}
+
+.checkbox {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+button.active {
+    width: 100%;
+    background-color: #154874;
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .parent {
+        padding: 0 10px;
+    }
+
+    .child {
+        max-width: 100%;
+    }
+}

@@ -1,25 +1,26 @@
 <div *ngIf="!isAdminLoggedIn && !isStudentLoggedIn">
     <mat-toolbar color="primary" class="navbar custom-toolbar">
-        <span class="navbar-brand">ScorpAHD</span>
+        <span class="navbar-brand">ScorpAHD | Login</span>
         <span class="spacer"></span>
-        <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
+        <button mat-button routerLink="/login" routerLinkActive="active" class="custom-button">Login</button>
     </mat-toolbar>
 </div>
 <div *ngIf="isAdminLoggedIn">
     <mat-toolbar color="primary" class="navbar custom-toolbar">
         <span class="navbar-brand">ScorpAHD | Admin</span>
         <span class="spacer"></span>
-        <button mat-button routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</button>
-        <button mat-button routerLink="/admin/student" routerLinkActive="active">Students</button>
-        <button mat-button (click)="logout()">Logout</button>
+        <button mat-button routerLink="/admin/dashboard" routerLinkActive="active" class="custom-button">Dashboard</button>
+        <button mat-button routerLink="/admin/student" routerLinkActive="active" class="custom-button">Post</button>
+        <button mat-button routerLink="/admin/send" routerLinkActive="active" class="custom-button">Send</button>
+        <button mat-button (click)="logout()" class="custom-button">Logout</button>
     </mat-toolbar>
 </div>
 <div *ngIf="isStudentLoggedIn">
     <mat-toolbar color="primary" class="navbar custom-toolbar">
         <span class="navbar-brand">ScorpAHD | Student</span>
         <span class="spacer"></span>
-        <button mat-button routerLink="/student/profile" routerLinkActive="active">Profile</button>
-        <button mat-button (click)="logout()">Logout</button>
+        <button mat-button routerLink="/student/profile" routerLinkActive="active" class="custom-button">Profile</button>
+        <button mat-button (click)="logout()" class="custom-button">Logout</button>
     </mat-toolbar>
 </div>
 <router-outlet></router-outlet>

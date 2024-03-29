@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './auth/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatButtonModule,
         MatSlideToggleModule,
         MatInputModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent]

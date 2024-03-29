@@ -1,0 +1,38 @@
+<div class="bg">
+    <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+    <div class="parent">
+        <div class="child">
+            <h1 class="form-title">Send Email</h1>
+            <form class="mail-form" [formGroup]="validateForm">
+
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>To</mat-label>
+                    <input matInput type="email" formControlName="to" placeholder="To">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Cc</mat-label>
+                    <input matInput type="email" formControlName="cc" placeholder="Cc">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Subject</mat-label>
+                    <input matInput type="text" formControlName="subject" placeholder="Subject" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>Text</mat-label>
+                    <textarea matInput formControlName="body" placeholder="Body" rows="5" required></textarea>
+                </mat-form-field>
+
+                <button type="button" mat-raised-button (click)="fileInput.click()" class="button">Choose File(s)</button>
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file" multiple>
+                <span *ngFor="let file of selectedFiles" class="file-name">{{file.name}}</span>
+
+                <mat-checkbox formControlName="sendToAll" class="checkbox">Send to All</mat-checkbox>
+
+                <button mat-raised-button [class.active]="validateForm.valid" (click)="onSubmit()" [disabled]="validateForm.invalid">Send</button>
+            </form>
+        </div>
+    </div>
+</div>

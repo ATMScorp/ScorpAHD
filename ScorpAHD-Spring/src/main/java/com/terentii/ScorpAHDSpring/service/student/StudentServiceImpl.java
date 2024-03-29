@@ -5,6 +5,7 @@ import com.terentii.ScorpAHDSpring.model.StudentDto;
 import com.terentii.ScorpAHDSpring.model.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,7 +17,7 @@ public class StudentServiceImpl implements StudentService{
     private final UserRepository userRepository;
 
     @Override
-    public SingleStudentDto getStudentById(Integer studentId) {
+    public SingleStudentDto getStudentById(Long studentId) {
         Optional<User> optionalUser = userRepository.findById(studentId);
         SingleStudentDto singleStudentDto = new SingleStudentDto();
         optionalUser.ifPresent(user -> singleStudentDto.setStudentDto(user.getStudentDto()));
@@ -24,7 +25,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public StudentDto updateStudent(Integer studentId, StudentDto studentDto) {
+    public StudentDto updateStudent(Long studentId, StudentDto studentDto) {
         Optional<User> optionalUser = userRepository.findById(studentId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -35,9 +36,7 @@ public class StudentServiceImpl implements StudentService{
             user.setAcademicYear(studentDto.getAcademicYear());
             user.setDateOfBirth(studentDto.getDateOfBirth());
             user.setAddress(studentDto.getAddress());
-            user.setGender(studentDto.getGender());
-            user.setEmail(studentDto.getEmail());
-            user.setRoomNumber(studentDto.getRoomNumber());
+            user.setPassword(new BCryptPasswordEncoder().encode(studentDto.getPassword()));
             User updatedStudent = userRepository.save(user);
             StudentDto updatedStudentDto = new StudentDto();
             updatedStudentDto.setId(updatedStudent.getId());

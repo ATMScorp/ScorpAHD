@@ -13,6 +13,7 @@ import { StudentRoutingModule } from './student-routing.module';
 import { ProfileComponent } from './student-components/profile/profile.component';
 import { UpdateStudentComponent } from './student-components/update-student/update-student.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class StudentModule { }

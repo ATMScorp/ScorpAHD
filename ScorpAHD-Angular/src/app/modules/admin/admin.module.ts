@@ -13,12 +13,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { SendMailComponent } from './admin-components/send-mail/send-mail.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     PostStudentComponent,
-    UpdateStudentComponent
+    UpdateStudentComponent,
+    SendMailComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatCheckboxModule
   ]
 })
 export class AdminModule { }

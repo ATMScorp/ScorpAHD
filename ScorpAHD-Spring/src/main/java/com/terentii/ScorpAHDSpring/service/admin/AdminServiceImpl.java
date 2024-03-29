@@ -1,4 +1,4 @@
-package com.terentii.ScorpAHDSpring.service;
+package com.terentii.ScorpAHDSpring.service.admin;
 
 import com.terentii.ScorpAHDSpring.model.Role;
 import com.terentii.ScorpAHDSpring.model.SingleStudentDto;
@@ -6,21 +6,33 @@ import com.terentii.ScorpAHDSpring.model.StudentDto;
 import com.terentii.ScorpAHDSpring.model.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
+
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    private final JavaMailSender javaMailSender;
 
     private final UserRepository userRepository;
 
-    public AdminServiceImpl(UserRepository userRepository) {
+    public AdminServiceImpl(UserRepository userRepository, JavaMailSender javaMailSender) {
         this.userRepository = userRepository;
+        this.javaMailSender = javaMailSender;
     }
 
     @PostConstruct
@@ -58,12 +70,12 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void deleteStudent(Integer studentId) {
+    public void deleteStudentById(Long studentId) {
         userRepository.deleteById(studentId);
     }
 
     @Override
-    public SingleStudentDto getStudentById(Integer studentId) {
+    public SingleStudentDto getStudentById(Long studentId) {
         Optional<User> optionalUser = userRepository.findById(studentId);
         SingleStudentDto singleStudentDto = new SingleStudentDto();
         optionalUser.ifPresent(user -> singleStudentDto.setStudentDto(user.getStudentDto()));
@@ -71,7 +83,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public StudentDto updateStudent(Integer studentId, StudentDto studentDto) {
+    public StudentDto updateStudent(Long studentId, StudentDto studentDto) {
         Optional<User> optionalUser = userRepository.findById(studentId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
@@ -93,4 +105,37 @@ public class AdminServiceImpl implements AdminService{
         return null;
     }
 
+    public void sendMail(String to, String cc, String subject, String body, MultipartFile[] files) {
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+
+            mimeMessageHelper.setFrom(fromEmail);
+            mimeMessageHelper.setTo(to);
+            if (cc != null && !cc.isEmpty()) {
+                mimeMessageHelper.setCc(cc);
+            }
+            mimeMessageHelper.setSubject(subject);
+            mimeMessageHelper.setText(body);
+
+            if (files != null) {
+                for (MultipartFile file : files) {
+                    mimeMessageHelper.addAttachment(Objects.requireNonNull(file.getOriginalFilename()), file);
+                }
+            }
+
+            javaMailSender.send(mimeMessage);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void sendMailToAllUsers(String subject, String body, MultipartFile[] files) {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            sendMail(user.getEmail(), null, subject, body, files);
+        }
+    }
 }

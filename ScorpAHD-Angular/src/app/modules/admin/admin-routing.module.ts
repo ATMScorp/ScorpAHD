@@ -4,11 +4,13 @@ import { DashboardComponent } from './admin-components/dashboard/dashboard.compo
 import { AdminGuard } from '../../auth/guards/admin-guard/admin.guard';
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
 import { UpdateStudentComponent } from './admin-components/update-student/update-student.component';
+import { SendMailComponent } from './admin-components/send-mail/send-mail.component';
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent, canActivate: [AdminGuard] },
   { path: "student", component: PostStudentComponent, canActivate: [AdminGuard] },
   { path: "dashboard/update/:studentId", component: UpdateStudentComponent, canActivate: [AdminGuard] },
+  { path: "send", component: SendMailComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

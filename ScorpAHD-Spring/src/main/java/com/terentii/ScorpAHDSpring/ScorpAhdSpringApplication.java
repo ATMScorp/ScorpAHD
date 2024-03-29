@@ -9,5 +9,4 @@ public class ScorpAhdSpringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ScorpAhdSpringApplication.class, args);
 	}
-
 }
