@@ -54,12 +54,15 @@ spring:
 
 - **Opis:** Ta funkcja pozwala administratorowi dodać nowego studenta do bazy danych.
 - **Endpoint:** `POST /admin/student`
-![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/dc805b01-4efe-430f-8cc9-5503aba49d0f)
-
+- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/dc805b01-4efe-430f-8cc9-5503aba49d0f)
+- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/333c53f7-2083-49bb-9407-426bceb46812)
+  
 ### Pobieranie listy studentów
 
 - **Opis:** Ta funkcja pozwala administratorowi pobrać listę wszystkich studentów z bazy danych.
 - **Endpoint:** `GET /admin/dashboard`
+- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/285d955f-8000-4ca9-9047-a87fb1d833b5)
+- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/70a80436-8ee4-427e-8648-df09844f1f41)
 
 ### Pobieranie szczegółów studenta
 
