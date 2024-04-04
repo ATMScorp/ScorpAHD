@@ -86,12 +86,14 @@ spring:
 - **Opis:** Ta funkcja pozwala zalogowanemu administratorowi wysyłać wiadomości e-mail do innych użytkowników systemu.
 - **Endpoint:** `POST /admin/send`
 - **Instrukcje:** Administrator może wysłać wiadomość e-mail do innych użytkowników systemu, wprowadzając adresy e-mail odbiorców, temat wiadomości, treść wiadomości oraz opcjonalnie załączniki.
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/c90c3b1b-3fa3-469d-8556-b43ab92e854b)
 
 ### Wysyłanie e-maili do wszystkich użytkowników
 
 - **Opis:** Ta funkcja pozwala administratorowi wysłać wiadomość e-mail do wszystkich użytkowników systemu.
 - **Endpoint:** `POST /admin/send/send-to-all`
 - **Instrukcje:** Administrator może wysłać wiadomość e-mail do wszystkich użytkowników systemu, wprowadzając temat wiadomości, treść wiadomości oraz opcjonalnie załączniki. Po zatwierdzeniu, wiadomość zostanie wysłana do wszystkich użytkowników.
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/baecfc61-59ad-4246-afc1-18b39ba9bb77)
 
 ### Dodanie event'a
 
@@ -130,7 +132,7 @@ spring:
 - **Opis:** Ta funkcja pozwala zalogowanemu studentowi zaktualizować swoje dane w systemie.
 - **Endpoint:** `POST /student/update/{studentId}`
 - **Instrukcje** Student musi wypełnić formularz zawierający nowe dane, które chce zaktualizować, a następnie zatwierdzić formularz. Po zatwierdzeniu, dane studenta zostaną zaktualizowane w systemie.
-  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/065cdd65-b2d6-42aa-a3ab-cd2cebdf9db8)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/2d7dc841-0785-4214-806c-954dc1ccead0)
   ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/18f69707-3bd5-46a9-ad2a-e92fcb091966)
 
   ### Pobieranie listy wydarzeń
