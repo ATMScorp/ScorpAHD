@@ -54,6 +54,7 @@ spring:
 
 - **Opis:** Ta funkcja pozwala administratorowi dodać nowego studenta do bazy danych.
 - **Endpoint:** `POST /admin/student`
+![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/dc805b01-4efe-430f-8cc9-5503aba49d0f)
 
 ### Pobieranie listy studentów
 
