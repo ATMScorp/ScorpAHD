@@ -12,11 +12,13 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './auth/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './auth/home/home.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,

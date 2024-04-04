@@ -37,7 +37,7 @@
     </tbody>
 </table>
 </div>
-<div class="no-data-container" *ngIf="!students || students.length === 0">
+<div class="no-data-container" *ngIf="students && students.length === 0">
     <img class="no-data-image" src="assets/inbox.png" alt="No data image">
     <p class="no-data-text">No Data</p>
 </div>

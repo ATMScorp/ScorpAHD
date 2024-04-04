@@ -22,10 +22,16 @@
 }
 
 .form-title {
-    margin-left: 160px;
-    margin-bottom: 60px;
+    text-align: center;
+    margin-bottom: 30px;
     font-size: 30px;
     font-weight: 400;
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
 }
 
 .login-form {

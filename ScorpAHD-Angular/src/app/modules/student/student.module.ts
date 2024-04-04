@@ -14,11 +14,14 @@ import { ProfileComponent } from './student-components/profile/profile.component
 import { UpdateStudentComponent } from './student-components/update-student/update-student.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { NewsComponent } from './student-components/news/news.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    UpdateStudentComponent
+    UpdateStudentComponent,
+    NewsComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatGridListModule
   ]
 })
 export class StudentModule { }

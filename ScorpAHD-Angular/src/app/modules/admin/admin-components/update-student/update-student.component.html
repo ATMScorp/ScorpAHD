@@ -8,66 +8,82 @@
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>First Name</mat-label>
                     <input matInput type="text" placeholder="First Name" formControlName="firstName" />
-                    <mat-error *ngIf="validateForm.get('firstName')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('firstName')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Second Name</mat-label>
                     <input matInput type="text" placeholder="Second Name" formControlName="secondName" />
-                    <mat-error *ngIf="validateForm.get('secondName')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('secondName')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Email</mat-label>
                     <input matInput type="email" placeholder="Enter Email" formControlName="email" />
-                    <mat-error *ngIf="validateForm.get('email')?.hasError('required')">This Input Is Required!</mat-error>
-                    <mat-error *ngIf="validateForm.get('email')?.hasError('email') || validateForm.get('email')?.hasError('pattern')">Please enter a valid email address.</mat-error>
+                    <mat-error *ngIf="validateForm.get('email')?.hasError('required')">This Input Is
+                        Required!</mat-error>
+                    <mat-error
+                        *ngIf="validateForm.get('email')?.hasError('email') || validateForm.get('email')?.hasError('pattern')">Please
+                        enter a valid email address.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Department</mat-label>
-                    <mat-select formControlName="department" (selectionChange)="updateFieldOfStudy()" placeholder="Select Department">
-                      <mat-option *ngFor="let department of DEPARTMENT" [value]="department">{{ department }}</mat-option>
+                    <mat-select formControlName="department" (selectionChange)="updateFieldOfStudy()"
+                        placeholder="Select Department">
+                        <mat-option *ngFor="let department of DEPARTMENT" [value]="department">{{ department
+                            }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="validateForm.get('department')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('department')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
-                  
+
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Field of Study</mat-label>
                     <mat-select formControlName="fieldOfStudy" placeholder="Select Field Of Study">
-                        <mat-option *ngFor="let field of FIELD_OF_STUDY[validateForm.get('department').value]" [value]="field">{{ field }}</mat-option>
+                        <mat-option *ngFor="let field of FIELD_OF_STUDY[validateForm.get('department').value]"
+                            [value]="field">{{ field }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="validateForm.get('fieldOfStudy')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('fieldOfStudy')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Year of Enrollment</mat-label>
                     <mat-select formControlName="academicYear" placeholder="Select Year of Enrollment">
-                        <mat-option *ngFor="let academicYear of ACADEMIC_YEARS" [value]="academicYear">{{ academicYear }}</mat-option>
+                        <mat-option *ngFor="let academicYear of ACADEMIC_YEARS" [value]="academicYear">{{ academicYear
+                            }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="validateForm.get('academicYear')?.hasError('required')">This Input Is Required!</mat-error>
-                </mat-form-field>                
+                    <mat-error *ngIf="validateForm.get('academicYear')?.hasError('required')">This Input Is
+                        Required!</mat-error>
+                </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Date of Birth</mat-label>
                     <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="dateOfBirth" />
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="validateForm.get('dateOfBirth')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('dateOfBirth')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Room Number</mat-label>
                     <mat-select formControlName="roomNumber" placeholder="Select Room Number">
-                        <mat-option *ngFor="let roomNumber of ROOM_NUMBER" [value]="roomNumber">{{ roomNumber }}</mat-option>
+                        <mat-option *ngFor="let roomNumber of ROOM_NUMBER" [value]="roomNumber">{{ roomNumber
+                            }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="validateForm.get('roomNumber')?.hasError('required')">This Input Is Required!</mat-error>
-                </mat-form-field> 
+                    <mat-error *ngIf="validateForm.get('roomNumber')?.hasError('required')">This Input Is
+                        Required!</mat-error>
+                </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Address</mat-label>
                     <textarea matInput placeholder="Address" formControlName="address"></textarea>
-                    <mat-error *ngIf="validateForm.get('address')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('address')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
@@ -75,10 +91,12 @@
                     <mat-select formControlName="gender" placeholder="Select a gender">
                         <mat-option *ngFor="let gender of GENDER" [value]="gender">{{ gender }}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="validateForm.get('gender')?.hasError('required')">This Input Is Required!</mat-error>
+                    <mat-error *ngIf="validateForm.get('gender')?.hasError('required')">This Input Is
+                        Required!</mat-error>
                 </mat-form-field>
 
-                <button mat-raised-button [class.active]="validateForm.valid" (click)="updateStudent()"  [disabled]="validateForm.invalid">Update Student</button>
+                <button mat-raised-button [class.active]="validateForm.valid" (click)="updateStudent()"
+                    [disabled]="validateForm.invalid">Update Student</button>
             </form>
         </div>
     </div>

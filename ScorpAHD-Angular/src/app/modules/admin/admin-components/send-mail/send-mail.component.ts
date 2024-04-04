@@ -22,8 +22,8 @@ export class SendMailComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      to: [null, Validators.email],
-      cc: [null, Validators.email],
+      to: [null, [Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      cc: [null, [Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       subject: [null, Validators.required],
       body: [null, Validators.required],
       sendToAll: [false]

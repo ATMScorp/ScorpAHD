@@ -8,6 +8,7 @@
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>To</mat-label>
                     <input matInput type="email" formControlName="to" placeholder="To">
+                    <mat-error *ngIf="validateForm.get('to')?.hasError('email') || validateForm.get('to')?.hasError('pattern')">Please enter a valid email address.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
@@ -18,11 +19,13 @@
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Subject</mat-label>
                     <input matInput type="text" formControlName="subject" placeholder="Subject" required>
+                    <mat-error *ngIf="validateForm.get('subject')?.hasError('required')">This Input Is Required!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label>Text</mat-label>
                     <textarea matInput formControlName="body" placeholder="Body" rows="5" required></textarea>
+                    <mat-error *ngIf="validateForm.get('body')?.hasError('required')">This Input Is Required!</mat-error>
                 </mat-form-field>
 
                 <button type="button" mat-raised-button (click)="fileInput.click()" class="button">Choose File(s)</button>

@@ -81,8 +81,37 @@ export class AdminService {
   
     return this.http.post<any>(BASIC_URL + "admin/send/send-to-all", formData, { headers });
   }
-  
 
+  addEvent(eventDto: any): Observable<any> {
+    return this.http.post<any>(BASIC_URL + "admin/event", eventDto, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
+
+  getAllEvents(): Observable<any> {
+    return this.http.get<any>(BASIC_URL + "admin/events", {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
+
+  getEventById(eventId: number): Observable<any> {
+    return this.http.get<any>(`${BASIC_URL}admin/event/${eventId}`, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
+
+  deleteEvent(eventId: number): Observable<any> {
+    return this.http.delete<any>(`${BASIC_URL}admin/event/${eventId}`, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
+
+  updateEvent(eventId: number, eventDto: any): Observable<any> {
+    return this.http.put<any>(`${BASIC_URL}admin/event/${eventId}`, eventDto, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
+  
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     const token = StorageService.getToken();

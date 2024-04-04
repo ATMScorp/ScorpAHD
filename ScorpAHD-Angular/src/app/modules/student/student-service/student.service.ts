@@ -24,6 +24,11 @@ export class StudentService {
     });
   }
 
+  getEventsForStudent(): Observable<any> {
+    return this.http.get<any>(`${BASIC_URL}student/news`, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
 
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
