@@ -1,0 +1,45 @@
+<div class="bg">
+  <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
+  <div class="parent">
+    <div class="child">
+      <h1 class="form-title">Update Event</h1>
+      <form class="event-form" [formGroup]="eventForm">
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" placeholder="Title" formControlName="title" />
+          <mat-error *ngIf="eventForm.get('title')?.hasError('required')">This Input Is Required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" placeholder="Description"></textarea>
+          <mat-error *ngIf="eventForm.get('description')?.hasError('required')">This Input Is Required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Location</mat-label>
+          <input matInput type="text" placeholder="Location" formControlName="location" />
+          <mat-error *ngIf="eventForm.get('location')?.hasError('required')">This Input Is Required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Start Time</mat-label>
+          <input matInput [matDatepicker]="startPicker" placeholder="MM/DD/YYYY" formControlName="startTime" />
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+          <mat-error *ngIf="eventForm.get('startTime')?.hasError('required')">This Input Is Required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>End Time</mat-label>
+          <input matInput [matDatepicker]="endPicker" placeholder="MM/DD/YYYY" formControlName="endTime" />
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+          <mat-error *ngIf="eventForm.get('endTime')?.hasError('required')">This Input Is Required!</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button [class.active]="eventForm.valid" (click)="updateEvent()"
+          [disabled]="eventForm.invalid">Update</button>
+      </form>
+    </div>

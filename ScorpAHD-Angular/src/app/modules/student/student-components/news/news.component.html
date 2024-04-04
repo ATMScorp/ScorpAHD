@@ -1,0 +1,19 @@
+<div class="container">
+  <h1 class="form-title">Upcoming Events</h1>
+
+  <div class="event-cards">
+    <div class="event-card" *ngFor="let event of events">
+      <div class="event-info">
+        <h3 class="event-title">{{ event.title }}</h3>
+        <p class="event-description">{{ event.description }}</p>
+        <p class="event-location">Location: {{ event.location }}</p>
+        <p class="event-time">Start Time: {{ event.startTime | date }}</p>
+        <p class="event-time">End Time: {{ event.endTime | date }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-events" *ngIf="events.length === 0">
+    <p>No upcoming events</p>
+  </div>
+</div>

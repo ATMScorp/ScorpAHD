@@ -1,0 +1,71 @@
+.event-container {
+  max-width: 80%;
+  margin: auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    mat-form-field {
+      width: 80%;
+      max-width: 400px;
+    }
+
+    button {
+      width: 80%;
+      margin-top: 20px;
+      max-width: 400px;
+    }
+  }
+
+  .form-title {
+    margin: 40px auto 30px;
+    text-align: center;
+  }
+  
+
+  .events-list {
+    .event-item {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      h3 {
+        margin-top: 0;
+      }
+
+      button {
+        float: right;
+      }
+    }
+
+    .action-buttons {
+      white-space: nowrap;
+    }
+  }
+
+  .no-events {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  .event-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  }
+}
