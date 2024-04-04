@@ -35,6 +35,29 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect  # Dialekt MySQL dla Hibernate
 ```
 
+## Konfiguracja wysyłania wiadomości e-mail
+
+Aby skonfigurować wysyłanie wiadomości e-mail, wykonaj następujące kroki:
+
+W pliku application.yml dodaj sekcję mail zawierającą informacje o serwerze SMTP, takie jak host, port, nazwę użytkownika(może być adres e-mail) 
+i hasło do uwierzytelnienia serwera SMTP(how to create app password you can watch in this video https://www.youtube.com/watch?v=J4CtP1MBtOE by Tony Teaches Tech).
+
+```yaml
+mail:
+  host: smtp.gmail.com # Host serwera SMTP
+  port: 587 # Port serwera SMTP
+  username: # Nazwa użytkownika do uwierzytelniania serwera SMTP
+  password: # Hasło do uwierzytelniania serwera SMTP
+  properties:
+    mail:
+      smtp:
+        auth: true # Włączenie uwierzytelniania SMTP
+        starttls:
+          enable: true # Włączenie STARTTLS dla bezpiecznego połączenia
+```
+
+
+
 ## Uruchamianie części serwerowej (Spring Boot)
 
 1. **Upewnij się, że masz zainstalowaną Javę na swoim komputerze.**
