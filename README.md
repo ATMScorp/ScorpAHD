@@ -40,7 +40,7 @@ spring:
 Aby skonfigurować wysyłanie wiadomości e-mail, wykonaj następujące kroki:
 
 W pliku application.yml dodaj sekcję mail zawierającą informacje o serwerze SMTP, takie jak host, port, nazwę użytkownika(może być adres e-mail) 
-i hasło do uwierzytelnienia serwera SMTP(how to create app password you can watch in this video https://www.youtube.com/watch?v=J4CtP1MBtOE by Tony Teaches Tech).
+i hasło do uwierzytelnienia serwera SMTP(how to create an application password you can watch in this video https://www.youtube.com/watch?v=J4CtP1MBtOE by Tony Teaches Tech).
 
 ```yaml
 mail:
@@ -70,6 +70,9 @@ mail:
 1. **Upewnij się, że masz zainstalowany Node.js i Angular CLI.**
 2. **Uruchom aplikację, wykonując polecenie `ng serve`.**
 3. **Aplikacja kliencka będzie dostępna pod adresem [http://localhost:4200](http://localhost:4200).**
+
+![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/22187ae9-c53d-4ca0-a826-3806e5d0ef39)
+
 
 ## Opis funkcji dostępnych dla admin'a
 
