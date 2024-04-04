@@ -1,4 +1,4 @@
-package com.terentii.ScorpAHDSpring.model;
+package com.terentii.ScorpAHDSpring.model.user;
 
 public class SingleStudentDto {
 

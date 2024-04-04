@@ -1,8 +1,8 @@
 package com.terentii.ScorpAHDSpring.service.student;
 
-import com.terentii.ScorpAHDSpring.model.SingleStudentDto;
-import com.terentii.ScorpAHDSpring.model.StudentDto;
-import com.terentii.ScorpAHDSpring.model.User;
+import com.terentii.ScorpAHDSpring.model.user.SingleStudentDto;
+import com.terentii.ScorpAHDSpring.model.user.StudentDto;
+import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

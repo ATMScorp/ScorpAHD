@@ -1,9 +1,9 @@
 package com.terentii.ScorpAHDSpring.service.admin;
 
 import com.terentii.ScorpAHDSpring.model.Role;
-import com.terentii.ScorpAHDSpring.model.SingleStudentDto;
-import com.terentii.ScorpAHDSpring.model.StudentDto;
-import com.terentii.ScorpAHDSpring.model.User;
+import com.terentii.ScorpAHDSpring.model.user.SingleStudentDto;
+import com.terentii.ScorpAHDSpring.model.user.StudentDto;
+import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.mail.internet.MimeMessage;

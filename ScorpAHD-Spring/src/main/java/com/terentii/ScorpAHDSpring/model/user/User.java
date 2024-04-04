@@ -1,5 +1,8 @@
-package com.terentii.ScorpAHDSpring.model;
+package com.terentii.ScorpAHDSpring.model.user;
 
+import com.terentii.ScorpAHDSpring.model.Role;
+import com.terentii.ScorpAHDSpring.model.Token;
+import com.terentii.ScorpAHDSpring.model.user.StudentDto;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

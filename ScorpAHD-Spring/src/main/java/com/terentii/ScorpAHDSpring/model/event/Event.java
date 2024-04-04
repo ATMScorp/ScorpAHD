@@ -1,4 +1,4 @@
-package com.terentii.ScorpAHDSpring.model;
+package com.terentii.ScorpAHDSpring.model.event;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

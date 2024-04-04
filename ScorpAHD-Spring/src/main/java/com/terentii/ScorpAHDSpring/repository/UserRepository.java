@@ -1,8 +1,7 @@
 package com.terentii.ScorpAHDSpring.repository;
 
 import com.terentii.ScorpAHDSpring.model.Role;
-import com.terentii.ScorpAHDSpring.model.StudentDto;
-import com.terentii.ScorpAHDSpring.model.User;
+import com.terentii.ScorpAHDSpring.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -3,7 +3,7 @@ package com.terentii.ScorpAHDSpring.service;
 
 import com.terentii.ScorpAHDSpring.model.AuthenticationResponse;
 import com.terentii.ScorpAHDSpring.model.Token;
-import com.terentii.ScorpAHDSpring.model.User;
+import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.TokenRepository;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;

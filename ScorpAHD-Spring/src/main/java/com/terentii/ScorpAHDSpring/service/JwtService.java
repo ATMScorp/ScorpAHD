@@ -1,6 +1,6 @@
 package com.terentii.ScorpAHDSpring.service;
 
-import com.terentii.ScorpAHDSpring.model.User;
+import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.TokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

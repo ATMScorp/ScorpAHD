@@ -1,8 +1,11 @@
 package com.terentii.ScorpAHDSpring.controller;
 
-import com.terentii.ScorpAHDSpring.model.SingleStudentDto;
-import com.terentii.ScorpAHDSpring.model.StudentDto;
+import com.terentii.ScorpAHDSpring.model.event.EventDto;
+import com.terentii.ScorpAHDSpring.model.event.SingleEventDto;
+import com.terentii.ScorpAHDSpring.model.user.SingleStudentDto;
+import com.terentii.ScorpAHDSpring.model.user.StudentDto;
 import com.terentii.ScorpAHDSpring.service.admin.AdminService;
+import com.terentii.ScorpAHDSpring.service.event.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -17,9 +20,11 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
     private final AdminService adminService;
+    private final EventService eventService;
 
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, EventService eventService) {
         this.adminService = adminService;
+        this.eventService = eventService;
     }
 
     @PostMapping("/student")
@@ -90,5 +95,67 @@ public class AdminController {
         }
     }
 
+    @PostMapping("/event")
+    public ResponseEntity<?> createEvent(@RequestBody EventDto eventDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            EventDto createdEventDto = eventService.createEvent(eventDto);
+            if (createdEventDto == null) {
+                return new ResponseEntity<>("Failed to create event.", HttpStatus.BAD_REQUEST);
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdEventDto);
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
 
+    @GetMapping("/events")
+    public ResponseEntity<List<EventDto>> getAllEvents() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            List<EventDto> events = eventService.getAllEvents();
+            return ResponseEntity.ok(events);
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
+
+    @GetMapping("/event/{eventId}")
+    public ResponseEntity<SingleEventDto> getEventById(@PathVariable Long eventId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            SingleEventDto singleEventDto = eventService.getEventById(eventId);
+            if (singleEventDto == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(singleEventDto);
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
+
+    @PutMapping("/event/{eventId}")
+    public ResponseEntity<?> updateEvent(@PathVariable Long eventId, @RequestBody EventDto eventDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            EventDto updatedEventDto = eventService.updateEvent(eventId, eventDto);
+            if (updatedEventDto == null) {
+                return new ResponseEntity<>("Failed to update event.", HttpStatus.BAD_REQUEST);
+            }
+            return ResponseEntity.ok(updatedEventDto);
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
+
+    @DeleteMapping("/event/{eventId}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long eventId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            eventService.deleteEvent(eventId);
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
 }

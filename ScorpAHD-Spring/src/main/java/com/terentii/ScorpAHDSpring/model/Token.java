@@ -1,6 +1,7 @@
 package com.terentii.ScorpAHDSpring.model;
 
 
+import com.terentii.ScorpAHDSpring.model.user.User;
 import jakarta.persistence.*;
 
 @Entity

@@ -1,7 +1,7 @@
 package com.terentii.ScorpAHDSpring.controller;
 
 import com.terentii.ScorpAHDSpring.model.AuthenticationResponse;
-import com.terentii.ScorpAHDSpring.model.User;
+import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import com.terentii.ScorpAHDSpring.service.AuthenticationService;
 import com.terentii.ScorpAHDSpring.service.UserDetailsServiceImp;
