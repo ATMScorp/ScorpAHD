@@ -54,30 +54,28 @@ spring:
 
 - **Opis:** Ta funkcja pozwala administratorowi dodać nowego studenta do bazy danych.
 - **Endpoint:** `POST /admin/student`
-- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/dc805b01-4efe-430f-8cc9-5503aba49d0f)
-- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/333c53f7-2083-49bb-9407-426bceb46812)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/dc805b01-4efe-430f-8cc9-5503aba49d0f)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/333c53f7-2083-49bb-9407-426bceb46812)
   
 ### Pobieranie listy studentów
 
 - **Opis:** Ta funkcja pozwala administratorowi pobrać listę wszystkich studentów z bazy danych.
 - **Endpoint:** `GET /admin/dashboard`
-- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/285d955f-8000-4ca9-9047-a87fb1d833b5)
-- ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/70a80436-8ee4-427e-8648-df09844f1f41)
-
-### Pobieranie szczegółów studenta
-
-- **Opis:** Ta funkcja pozwala administratorowi pobrać szczegółowe informacje o konkretnym studencie.
-- **Endpoint:** `GET /admin/dashboard/{studentId}`
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/285d955f-8000-4ca9-9047-a87fb1d833b5)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/70a80436-8ee4-427e-8648-df09844f1f41)
 
 ### Aktualizacja danych studenta
 
 - **Opis:** Ta funkcja pozwala administratorowi zaktualizować dane istniejącego studenta.
 - **Endpoint:** `POST /admin/dashboard/update/{studentId}`
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/ddc09e92-5c38-4291-88e5-024dcf7775dd)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/7c346588-7792-4e49-9cae-996ddac8b377)
 
 ### Usuwanie studenta
 
 - **Opis:** Ta funkcja pozwala administratorowi usunąć istniejącego studenta z bazy danych.
 - **Endpoint:** `DELETE /admin/dashboard/{studentId}`
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/12c376ff-ab98-4e4b-84a1-60b35bb44600)
 
 ## Opis funkcji dostępnych dla studenta
 
@@ -85,8 +83,12 @@ spring:
 
 - **Opis:** Ta funkcja pozwala zalogowanemu studentowi pobrać informacje o swoim profilu.
 - **Endpoint:** `GET /student/profile/{studentId}`
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/783a91af-ca68-42dd-8324-f226cf726bd4)
 
 ### Aktualizacja własnych danych
 
 - **Opis:** Ta funkcja pozwala zalogowanemu studentowi zaktualizować swoje dane w systemie.
 - **Endpoint:** `POST /student/update/{studentId}`
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/065cdd65-b2d6-42aa-a3ab-cd2cebdf9db8)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/18f69707-3bd5-46a9-ad2a-e92fcb091966)
+
