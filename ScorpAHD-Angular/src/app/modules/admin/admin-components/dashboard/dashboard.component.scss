@@ -1,35 +1,61 @@
-.student-table {
+.dashboard-container {
+  .form-field {
+    margin-right: 20px;
+  }
+
+  .filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filter-header span {
+    margin-right: 5px;
+  }
+
+  .sort-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .sort-header span {
+    margin-right: 5px;
+  }
+
+  .student-table {
     width: 100%;
     border-collapse: collapse;
   }
-  
-  .student-table th, .student-table td {
+
+  .student-table th,
+  .student-table td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
   }
-  
+
   .student-table th {
     background-color: #f2f2f2;
     color: #333;
   }
-  
+
   .student-table td {
     background-color: #fff;
   }
-  
+
   .student-table tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
   }
-  
+
   .student-table tbody tr:hover {
     background-color: #e5e5e5;
   }
-  
-  .student-table th, .student-table td {
+
+  .student-table th,
+  .student-table td {
     transition: background-color 0.3s ease;
   }
-  
+
   .delete-button {
     background-color: #f44336;
     color: white;
@@ -39,7 +65,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .delete-button:hover {
     background-color: #d32f2f;
   }
@@ -52,39 +78,40 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   .update-button:hover {
     background-color: darkgreen;
   }
 
   .action-buttons {
     white-space: nowrap;
-}
+  }
 
-.update-button, .delete-button {
+  .update-button,
+  .delete-button {
     margin-right: 10px;
-}
+  }
 
-.no-data-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  .no-data-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-.no-data-image {
-  position: absolute;
-  margin-top: 0px;
-}
+  .no-data-image {
+    justify-content: center;
+    margin-top: 0px;
+  }
 
-.no-data-text {
-  font-size: 24px;
-  color: #B6B6B6;
-  margin-top: 130px;
+  .no-data-text {
+    font-size: 24px;
+    color: #b6b6b6;
+    margin-top: 130px;
+  }
 }
-  
