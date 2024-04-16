@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./photo-modal.component.scss']
 })
 export class PhotoModalComponent {
+  zoomValue: number = 1;
 
   constructor(
     public dialogRef: MatDialogRef<PhotoModalComponent>,
@@ -17,4 +18,12 @@ export class PhotoModalComponent {
     this.dialogRef.close();
   }
 
+  onWheel(event: WheelEvent): void {
+    event.preventDefault();
+    if (event.deltaY > 0) {
+      this.zoomValue -= 0.1;
+    } else {
+      this.zoomValue += 0.1;
+    }
+  }
 }

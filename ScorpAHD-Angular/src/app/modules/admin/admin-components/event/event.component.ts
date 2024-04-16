@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../admin-service/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationEventComponent } from '../../admin-dialogues/delete-confirmation-event/delete-confirmation-event.component';
 
 @Component({
   selector: 'app-event',
@@ -17,7 +19,8 @@ export class EventComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: AdminService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -49,8 +52,7 @@ export class EventComponent implements OnInit {
       this.isSubmitting = true;
       const eventDto = this.eventForm.value;
       this.service.addEvent(eventDto).subscribe({
-        next: (response) => {
-          console.log('Event added successfully:', response);
+        next: () => {
           this.isSpinning = false;
           this.isSubmitting = false;
           this.snackBar.open('Event added successfully!', 'Close', { duration: 3000 });
@@ -68,15 +70,21 @@ export class EventComponent implements OnInit {
   }
 
   deleteEvent(eventId: number): void {
-    this.service.deleteEvent(eventId).subscribe({
-      next: () => {
-        console.log('Event deleted successfully');
-        this.snackBar.open('Event deleted successfully!', 'Close', { duration: 3000 });
-        this.getAllEvents();
-      },
-      error: (error) => {
-        console.error('Failed to delete event:', error);
-        this.snackBar.open('Failed to delete event. Please try again later.', 'Close', { duration: 3000 });
+    const dialogRef = this.dialog.open(DeleteConfirmationEventComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.deleteEvent(eventId).subscribe({
+          next: () => {
+            this.snackBar.open('Event deleted successfully!', 'Close', { duration: 3000 });
+            this.getAllEvents();
+          },
+          error: (error) => {
+            console.error('Failed to delete event:', error);
+            this.snackBar.open('Failed to delete event. Please try again later.', 'Close', { duration: 3000 });
+          }
+        });
       }
     });
   }

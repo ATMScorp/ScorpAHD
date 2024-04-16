@@ -1,0 +1,32 @@
+.delete-confirmation-content {
+    width: 450px;
+    padding: 20px;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .mat-dialog-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .delete-button {
+        background-color: #f44336;
+        color: white;
+        margin-right: 10px;
+        border: 2px solid #f44336;
+        border-radius: 5px;
+        padding: 8px 16px;
+    }
+
+    .cancel-button {
+        background-color: #607d8b;
+        color: white;
+        border: 2px solid #607d8b;
+        border-radius: 5px;
+        padding: 8px 16px;
+    }
+}

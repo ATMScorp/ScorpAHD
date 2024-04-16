@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../student-service/student.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
+import { PhotoModalComponent } from '../../student-dialogues/photo-modal/photo-modal.component';
 
 @Component({
   selector: 'app-news',

@@ -16,7 +16,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { NewsComponent } from './student-components/news/news.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { PhotoModalComponent } from './student-components/photo-modal/photo-modal.component';
+import { PhotoModalComponent } from './student-dialogues/photo-modal/photo-modal.component';
 import { ChangePasswordComponent } from './student-components/change-password/change-password.component';
 
 @NgModule({

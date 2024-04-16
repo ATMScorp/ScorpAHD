@@ -7,6 +7,10 @@ import { DashboardComponent } from './admin-components/dashboard/dashboard.compo
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
 import { UpdateStudentComponent } from './admin-components/update-student/update-student.component';
 import { EventComponent } from './admin-components/event/event.component';
+import { UpdateEventComponent } from './admin-components/update-event/update-event.component';
+import { SendMailComponent } from './admin-components/send-mail/send-mail.component';
+import { DeleteConfirmationComponent } from './admin-dialogues/delete-confirmation-password/delete-confirmation-password.component';
+import { DeleteConfirmationEventComponent } from './admin-dialogues/delete-confirmation-event/delete-confirmation-event.component';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,11 +19,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { SendMailComponent } from './admin-components/send-mail/send-mail.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
-import { UpdateEventComponent } from './admin-components/update-event/update-event.component';
+import { MatDialogActions, MatDialogContent, MatDialogClose } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { UpdateEventComponent } from './admin-components/update-event/update-eve
     UpdateStudentComponent,
     SendMailComponent,
     EventComponent,
-    UpdateEventComponent
+    UpdateEventComponent,
+    DeleteConfirmationComponent,
+    DeleteConfirmationEventComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +50,10 @@ import { UpdateEventComponent } from './admin-components/update-event/update-eve
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogActions,
+    MatDialogContent,
+    MatDialogClose
   ]
 })
 export class AdminModule { }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AdminService } from '../../admin-service/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationComponent } from '../../admin-dialogues/delete-confirmation-password/delete-confirmation-password.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -29,7 +31,8 @@ export class DashboardComponent {
   showFirstNameFilter: boolean = false;
 
   constructor(private service: AdminService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAllStudents();
@@ -41,11 +44,18 @@ export class DashboardComponent {
       this.originalStudents = res;
     })
   }
-
+  
   deleteStudent(studentId: number) {
-    this.service.deleteStudent(studentId).subscribe((res) => {
-      this.getAllStudents();
-      this.snackBar.open("Student deleted successfully", "Close", { duration: 5000 });
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.deleteStudent(studentId).subscribe((res) => {
+          this.getAllStudents();
+          this.snackBar.open("Student deleted successfully", "Close", { duration: 5000 });
+        });
+      }
     });
   }
 
