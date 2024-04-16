@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/academic_db
-    username: root
-    password: Copybook04_
+    username:
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -17,8 +17,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: alextrukhanovich034@gmail.com
-    password: tqfp pgvj mgvz ebed
+    username:
+    password:
     properties:
       mail:
         smtp:
