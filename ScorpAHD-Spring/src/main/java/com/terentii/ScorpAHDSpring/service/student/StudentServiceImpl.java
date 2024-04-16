@@ -36,8 +36,24 @@ public class StudentServiceImpl implements StudentService{
             user.setAcademicYear(studentDto.getAcademicYear());
             user.setDateOfBirth(studentDto.getDateOfBirth());
             user.setAddress(studentDto.getAddress());
-            user.setPassword(new BCryptPasswordEncoder().encode(studentDto.getPassword()));
             User updatedStudent = userRepository.save(user);
+            StudentDto updatedStudentDto = new StudentDto();
+            updatedStudentDto.setId(updatedStudent.getId());
+            return updatedStudentDto;
+        }
+        return null;
+    }
+
+    @Override
+    public StudentDto changePassword(Long studentId, StudentDto studentDto) {
+        Optional<User> optionalUser = userRepository.findById(studentId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            user.setPassword(new BCryptPasswordEncoder().encode(studentDto.getPassword()));
+
+            User updatedStudent = userRepository.save(user);
+
             StudentDto updatedStudentDto = new StudentDto();
             updatedStudentDto.setId(updatedStudent.getId());
             return updatedStudentDto;

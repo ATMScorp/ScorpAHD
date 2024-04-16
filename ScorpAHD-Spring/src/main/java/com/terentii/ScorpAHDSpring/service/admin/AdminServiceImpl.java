@@ -15,9 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +38,7 @@ public class AdminServiceImpl implements AdminService {
         List<User> adminList = userRepository.findAllByRole(Role.ADMIN);
         if (adminList.isEmpty()) {
             User admin = new User();
-            admin.setEmail("admin@test.com");
+            admin.setEmail("alextrukhanovich034@gmail.com");
             admin.setRole(Role.ADMIN);
             admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
             userRepository.save(admin);

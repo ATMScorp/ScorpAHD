@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
 
   loginForm: FormGroup | undefined;
+  hidePassword: boolean = true;
 
   constructor(
     private service: AuthService,
@@ -28,7 +29,6 @@ export class LoginComponent {
   }
 
   login(){
-    console.log(this.loginForm.value);
     this.service.login(
       this.loginForm.get(['email'])!.value,
       this.loginForm.get(['password'])!.value,
@@ -51,5 +51,9 @@ export class LoginComponent {
         });
       }
     }
+  }
+
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
   }
 }

@@ -1,6 +1,6 @@
 <div class="event-container">
+    <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
     <h1 class="form-title">Post Event</h1>
-
     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field appearance="outline" class="form-field">
@@ -12,19 +12,22 @@
         <mat-form-field appearance="outline" class="form-field">
             <mat-label>Description</mat-label>
             <textarea matInput formControlName="description" placeholder="Description"></textarea>
-            <mat-error *ngIf="eventForm.get('description')?.hasError('required')">This Input Is Required!</mat-error>
+            <mat-error *ngIf="eventForm.get('description')?.hasError('required')">This Input Is
+                Required!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="form-field">
             <mat-label>Location</mat-label>
             <input matInput formControlName="location" placeholder="Location">
-            <mat-error *ngIf="eventForm.get('location')?.hasError('required')">This Input Is Required!</mat-error>
+            <mat-error *ngIf="eventForm.get('location')?.hasError('required')">This Input Is
+                Required!</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="form-field">
             <mat-label>Start Time</mat-label>
             <input matInput [matDatepicker]="startPicker" formControlName="startTime" placeholder="Start Time">
-            <mat-error *ngIf="eventForm.get('startTime')?.hasError('required')">This Input Is Required!</mat-error>
+            <mat-error *ngIf="eventForm.get('startTime')?.hasError('required')">This Input Is
+                Required!</mat-error>
             <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
             <mat-datepicker #startPicker></mat-datepicker>
         </mat-form-field>
@@ -32,9 +35,19 @@
         <mat-form-field appearance="outline" class="form-field">
             <mat-label>End Time</mat-label>
             <input matInput [matDatepicker]="endPicker" formControlName="endTime" placeholder="End Time">
-            <mat-error *ngIf="eventForm.get('endTime')?.hasError('required')">This Input Is Required!</mat-error>
+            <mat-error *ngIf="eventForm.get('endTime')?.hasError('required')">This Input Is
+                Required!</mat-error>
             <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
             <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- <button type="button" mat-raised-button (click)="fileInput.click()" class="button">Choose File</button>
+        <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+        <span *ngIf="selectedFile" class="file-name">{{ selectedFile.name }}</span> -->
+
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Photo URL</mat-label>
+            <input matInput formControlName="photoUrl" placeholder="Photo URL">
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit" [disabled]="eventForm.invalid || isSubmitting">Add
@@ -51,6 +64,7 @@
                     <th>Location</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Photo URL</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -62,6 +76,7 @@
                     <td>{{ event.location }}</td>
                     <td>{{ event.startTime | date }}</td>
                     <td>{{ event.endTime | date }}</td>
+                    <td>{{ event.photoUrl}}</td>
                     <td class="action-buttons">
                         <button mat-icon-button color="primary" routerLink="/admin/event/update/{{event.id}}">
                             <mat-icon>edit</mat-icon>
@@ -79,4 +94,3 @@
         <p>No events available</p>
     </div>
 </div>
-

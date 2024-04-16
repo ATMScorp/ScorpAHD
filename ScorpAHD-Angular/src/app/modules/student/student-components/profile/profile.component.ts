@@ -21,7 +21,6 @@ export class ProfileComponent {
   getStudentById() {
     this.service.getStudentById().subscribe(
       (res) => {
-        console.log(res);
         this.student = res.studentDto;
       }
     )

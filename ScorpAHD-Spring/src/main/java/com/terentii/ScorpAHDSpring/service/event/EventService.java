@@ -7,8 +7,13 @@ import java.util.List;
 
 public interface EventService {
     EventDto createEvent(EventDto eventDto);
+
+    void sendMailToAllUsers(String subject, String body);
+
     List<EventDto> getAllEvents();
     SingleEventDto getEventById(Long eventId);
     EventDto updateEvent(Long eventId, EventDto eventDto);
     void deleteEvent(Long eventId);
+
+    void deleteExpiredEvents();
 }

@@ -4,6 +4,9 @@
   <div class="event-cards">
     <div class="event-card" *ngFor="let event of events">
       <div class="event-info">
+        <div *ngIf="event.photoUrl" (click)="openPhotoModal(event.photoUrl)">
+          <img class="event-photo" [src]="event.photoUrl" alt="Event Photo">
+        </div>
         <h3 class="event-title">{{ event.title }}</h3>
         <p class="event-description">{{ event.description }}</p>
         <p class="event-location">Location: {{ event.location }}</p>

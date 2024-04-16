@@ -30,6 +30,12 @@ export class StudentService {
     });
   }
 
+  changePassword(studentLeaveDto):Observable<any> {
+    return this.http.post<any>(`${BASIC_URL}student/password/${StorageService.getUserId()}`, studentLeaveDto, {
+      headers: this.createAuthorizationHeader(),
+    });
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     const token = StorageService.getToken();

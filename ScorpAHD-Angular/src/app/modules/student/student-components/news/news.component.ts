@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../student-service/student.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
 
 @Component({
   selector: 'app-news',
@@ -10,7 +12,9 @@ export class NewsComponent implements OnInit {
 
   events: any[] = [];
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getEvents();
@@ -26,4 +30,12 @@ export class NewsComponent implements OnInit {
       }
     });
   }  
+
+  openPhotoModal(photoUrl: string): void {
+    this.dialog.open(PhotoModalComponent, {
+      data: {
+        photoUrl: photoUrl
+      }
+    });
+  }
 }

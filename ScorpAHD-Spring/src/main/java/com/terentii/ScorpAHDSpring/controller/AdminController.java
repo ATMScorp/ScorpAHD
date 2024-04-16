@@ -113,6 +113,8 @@ public class AdminController {
     public ResponseEntity<List<EventDto>> getAllEvents() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            eventService.deleteExpiredEvents();
+
             List<EventDto> events = eventService.getAllEvents();
             return ResponseEntity.ok(events);
         } else {

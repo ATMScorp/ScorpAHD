@@ -1,56 +1,104 @@
-<div class="dashboard-container">
+<div class="dashboard-container" [class.no-data]="!students || students.length === 0">
     <table class="student-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>
+                    <span>First Name</span>
                     <div class="filter-header">
-                        <span>First Name</span>
-                        <button mat-icon-button (click)="toggleSort('firstName')">
+                        <button mat-icon-button (click)="toggleSort('firstName')" class="sort-icon">
                             <mat-icon>sort_by_alpha</mat-icon>
                         </button>
+                        <button mat-icon-button (click)="toggleFilter('firstName')" class="filter-icon">
+                            <mat-icon>filter_list</mat-icon>
+                        </button>
                     </div>
+                    <input matInput *ngIf="showFirstNameFilter" [(ngModel)]="firstNameFilterInput"
+                        placeholder="Enter first name" (input)="filterStudents()" (change)="filterStudents()"
+                        class="filter-input">
                 </th>
-                <th>Second Name</th>
-                <th>Email</th>
                 <th>
+                    <span>Second Name</span>
                     <div class="filter-header">
-                        <span>Department</span>
+
+                        <button mat-icon-button (click)="toggleFilter('secondName')">
+                            <mat-icon>filter_list</mat-icon>
+                        </button>
+                    </div>
+                    <input matInput *ngIf="showSecondNameFilter" [(ngModel)]="secondNameFilterInput"
+                        placeholder="Enter second name" (input)="filterStudents()" (change)="filterStudents()"
+                        class="filter-input">
+                </th>
+                <th>
+                    <span>Email</span>
+                    <div class="filter-header">
+
+                        <button mat-icon-button (click)="toggleFilter('email')">
+                            <mat-icon>filter_list</mat-icon>
+                        </button>
+                    </div>
+                    <input matInput *ngIf="showEmailFilter" [(ngModel)]="emailFilterInput" placeholder="Enter email"
+                        (input)="filterStudents()" class="filter-input">
+                </th>
+                <th>
+                    <span>Department</span>
+                    <div class="filter-header">
+
                         <button mat-icon-button (click)="toggleFilter('department')">
                             <mat-icon>filter_list</mat-icon>
                         </button>
                     </div>
-                    <input matInput *ngIf="showDepartmentFilter" [(ngModel)]="departmentFilterInput" placeholder="Enter department" (input)="filterStudents()">
+                    <input matInput *ngIf="showDepartmentFilter" [(ngModel)]="departmentFilterInput"
+                        placeholder="Enter department" (input)="filterStudents()" class="filter-input">
                 </th>
                 <th>
+                    <span>Field</span>
                     <div class="filter-header">
-                        <span>Field Of Study</span>
+
                         <button mat-icon-button (click)="toggleFilter('fieldOfStudy')">
                             <mat-icon>filter_list</mat-icon>
                         </button>
                     </div>
-                    <input matInput *ngIf="showFieldOfStudyFilter" [(ngModel)]="fieldOfStudyFilterInput" placeholder="Enter field of study" (input)="filterStudents()">
+                    <input matInput *ngIf="showFieldOfStudyFilter" [(ngModel)]="fieldOfStudyFilterInput"
+                        placeholder="Enter field of study" (input)="filterStudents()" class="filter-input">
                 </th>
                 <th>Date Of Birth</th>
                 <th>Address</th>
-                <th>Gender</th>
                 <th>
+                    <span>Gender</span>
                     <div class="filter-header">
-                        <span>Room Number</span>
+
+                        <button mat-icon-button (click)="toggleFilter('gender')">
+                            <mat-icon>filter_list</mat-icon>
+                        </button>
+                    </div>
+                    <select *ngIf="showGenderFilter" [(ngModel)]="genderFilterInput" (change)="filterStudents()">
+                        <option value="">Select</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </th>
+                <th>
+                    <span>Room Number</span>
+                    <div class="filter-header">
+
                         <button mat-icon-button (click)="toggleFilter('roomNumber')">
                             <mat-icon>filter_list</mat-icon>
                         </button>
                     </div>
-                    <input matInput *ngIf="showRoomNumberFilter" [(ngModel)]="roomNumberFilterInput" placeholder="Enter room number" (input)="filterStudents()">
+                    <input matInput *ngIf="showRoomNumberFilter" [(ngModel)]="roomNumberFilterInput"
+                        placeholder="Enter room number" (input)="filterStudents() " class="filter-input">
                 </th>
                 <th>
+                    <span>Academic Year</span>
                     <div class="filter-header">
-                        <span>Academic Year</span>
+
                         <button mat-icon-button (click)="toggleFilter('academicYear')">
                             <mat-icon>filter_list</mat-icon>
                         </button>
                     </div>
-                    <input matInput *ngIf="showAcademicYearFilter" [(ngModel)]="academicYearFilterInput" placeholder="Enter academic year" (input)="filterStudents()">
+                    <input matInput *ngIf="showAcademicYearFilter" [(ngModel)]="academicYearFilterInput"
+                        placeholder="Enter academic year" (input)="filterStudents()" class="filter-input">
                 </th>
                 <th>Actions</th>
             </tr>
@@ -69,14 +117,18 @@
                 <td>{{ student.roomNumber }}</td>
                 <td>{{ student.academicYear }}</td>
                 <td class="action-buttons">
-                    <button class="update-button" routerLink="/admin/dashboard/update/{{student.id}}">Update</button>
-                    <button class="delete-button" (click)="deleteStudent(student.id)">Delete</button>
+                    <button mat-icon-button color="primary" routerLink="/admin/dashboard/update/{{student.id}}">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteStudent(student.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </td>
             </tr>
         </tbody>
     </table>
-</div>
-<div class="no-data-container" *ngIf="students && students.length === 0">
-    <img class="no-data-image" src="assets/inbox.png" alt="No data image">
-    <p class="no-data-text">No Data</p>
+    <div class="no-data-overlay" *ngIf="!students || students.length === 0">
+        <img class="no-data-image" src="assets/inbox.png" alt="No data image">
+        <p class="no-data-text">No Data</p>
+    </div>
 </div>

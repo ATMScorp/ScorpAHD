@@ -149,6 +149,8 @@ export class PostStudentComponent {
 
   isSpinning: boolean;
   validateForm: FormGroup;
+  hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
 
   comfirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
@@ -218,5 +220,12 @@ export class PostStudentComponent {
       });
     }
   }
-  
+
+  togglePasswordVisibility(): void {
+    this.hidePassword = !this.hidePassword;
+  }
+
+  toggleConfirmPasswordVisibility(): void {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
 }

@@ -21,6 +21,8 @@ public class Event {
 
     private String location;
 
+    private String photoUrl;
+
     public Long getId() {
         return id;
     }
@@ -69,6 +71,14 @@ public class Event {
         this.location = location;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
     public EventDto getEventDto() {
         EventDto eventDto = new EventDto();
         eventDto.setId(id);
@@ -77,6 +87,7 @@ public class Event {
         eventDto.setLocation(location);
         eventDto.setStartTime(startTime);
         eventDto.setEndTime(endTime);
+        eventDto.setPhotoUrl(photoUrl);
         return eventDto;
     }
 }

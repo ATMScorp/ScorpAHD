@@ -12,6 +12,7 @@ public class EventDto {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String location;
+    private String photoUrl;
 
     public void setId(Long id) {
         this.id = id;
@@ -35,6 +36,10 @@ public class EventDto {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }
 

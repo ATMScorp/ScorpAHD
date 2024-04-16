@@ -27,7 +27,8 @@ export class UpdateEventComponent implements OnInit {
       description: ['', Validators.required],
       location: ['', Validators.required],
       startTime: ['', Validators.required],
-      endTime: ['', Validators.required]
+      endTime: ['', Validators.required],
+      photoUrl: ['']
     });
     this.getEventById();
   }

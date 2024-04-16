@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
+  isSpinning: boolean = false;
   events: any[] = [];
   eventForm: FormGroup;
   isSubmitting: boolean = false;
@@ -37,17 +38,20 @@ export class EventComponent implements OnInit {
       description: ['', Validators.required],
       location: ['', Validators.required],
       startTime: ['', Validators.required],
-      endTime: ['', Validators.required]
+      endTime: ['', Validators.required],
+      photoUrl: ['']
     });
   }
 
   onSubmit(): void {
     if (this.eventForm.valid) {
+      this.isSpinning = true;
       this.isSubmitting = true;
       const eventDto = this.eventForm.value;
       this.service.addEvent(eventDto).subscribe({
         next: (response) => {
           console.log('Event added successfully:', response);
+          this.isSpinning = false;
           this.isSubmitting = false;
           this.snackBar.open('Event added successfully!', 'Close', { duration: 3000 });
           this.getAllEvents();
@@ -55,6 +59,7 @@ export class EventComponent implements OnInit {
         },
         error: (error) => {
           console.error('Failed to add event:', error);
+          this.isSpinning = false;
           this.isSubmitting = false;
           this.snackBar.open('Failed to add event. Please try again later.', 'Close', { duration: 3000 });
         }

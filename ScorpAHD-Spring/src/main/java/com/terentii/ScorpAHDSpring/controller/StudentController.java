@@ -64,4 +64,17 @@ public class StudentController {
             throw new AccessDeniedException("You do not have permission to access this resource.");
         }
     }
+
+    @PostMapping("/password/{studentId}")
+    public ResponseEntity<?> changePassword(@PathVariable Long studentId, @RequestBody StudentDto studentDto){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
+            StudentDto createdStudentDto = studentService.changePassword(studentId, studentDto);
+            if (createdStudentDto == null)
+                return new ResponseEntity<>("Something went wrong.", HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdStudentDto);
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
 }

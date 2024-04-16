@@ -14,11 +14,19 @@ export class DashboardComponent {
   fieldOfStudyFilterInput: string = '';
   roomNumberFilterInput: string = '';
   academicYearFilterInput: string = '';
+  emailFilterInput: string = '';
+  secondNameFilterInput: string = '';
+  firstNameFilterInput: string = '';
+  genderFilterInput: string = '';
   sorting: boolean = false;
   showDepartmentFilter: boolean = false;
   showFieldOfStudyFilter: boolean = false;
   showRoomNumberFilter: boolean = false;
   showAcademicYearFilter: boolean = false;
+  showEmailFilter: boolean = false;
+  showSecondNameFilter: boolean = false;
+  showGenderFilter: boolean = false;
+  showFirstNameFilter: boolean = false;
 
   constructor(private service: AdminService,
     private snackBar: MatSnackBar) { }
@@ -29,7 +37,6 @@ export class DashboardComponent {
 
   getAllStudents() {
     this.service.getAllStudents().subscribe((res) => {
-      console.log(res);
       this.students = res;
       this.originalStudents = res;
     })
@@ -37,20 +44,20 @@ export class DashboardComponent {
 
   deleteStudent(studentId: number) {
     this.service.deleteStudent(studentId).subscribe((res) => {
-      console.log(res);
       this.getAllStudents();
       this.snackBar.open("Student deleted successfully", "Close", { duration: 5000 });
     });
   }
 
   toggleSort(fieldName: string) {
-    this.sorting = !this.sorting;
-    if (this.sorting) {
+    if (!this.sorting) {
       this.sortStudents(fieldName);
     } else {
-      this.getAllStudents();
+      this.students.reverse();
     }
+    this.sorting = !this.sorting;
   }
+
 
   sortStudents(fieldName: string) {
     this.students.sort((a, b) => {
@@ -71,8 +78,20 @@ export class DashboardComponent {
       case 'roomNumber':
         this.showRoomNumberFilter = !this.showRoomNumberFilter;
         break;
-      case 'academicYear': // Добавляем обработчик для academicYear
+      case 'academicYear':
         this.showAcademicYearFilter = !this.showAcademicYearFilter;
+        break;
+      case 'email':
+        this.showEmailFilter = !this.showEmailFilter;
+        break;
+      case 'secondName':
+        this.showSecondNameFilter = !this.showSecondNameFilter;
+        break;
+      case 'gender':
+        this.showGenderFilter = !this.showGenderFilter;
+        break;
+      case 'firstName':
+        this.showFirstNameFilter = !this.showFirstNameFilter;
         break;
     }
   }
@@ -83,6 +102,14 @@ export class DashboardComponent {
       let passFieldOfStudyFilter = true;
       let passRoomNumberFilter = true;
       let passAcademicYearFilter = true;
+      let passEmailFilter = true;
+      let passSecondNameFilter = true;
+      let passGenderFilter = true;
+      let passFirstNameFilter = true;
+
+      if (this.firstNameFilterInput) {
+        passFirstNameFilter = student.firstName.toLowerCase().includes(this.firstNameFilterInput.toLowerCase());
+      }
 
       if (this.departmentFilterInput) {
         passDepartmentFilter = student.department.toLowerCase().includes(this.departmentFilterInput.toLowerCase());
@@ -96,15 +123,26 @@ export class DashboardComponent {
         passRoomNumberFilter = student.roomNumber === this.roomNumberFilterInput;
       }
 
-      // Добавляем фильтрацию для academicYear
       if (this.academicYearFilterInput !== '') {
         passAcademicYearFilter = student.academicYear === this.academicYearFilterInput;
       }
 
-      return passDepartmentFilter && passFieldOfStudyFilter && passRoomNumberFilter && passAcademicYearFilter;
+      if (this.emailFilterInput) {
+        passEmailFilter = student.email.toLowerCase().includes(this.emailFilterInput.toLowerCase());
+      }
+
+      if (this.secondNameFilterInput) {
+        passSecondNameFilter = student.secondName.toLowerCase().includes(this.secondNameFilterInput.toLowerCase());
+      }
+
+      if (this.genderFilterInput !== '') {
+        passGenderFilter = student.gender.toLowerCase() === this.genderFilterInput.toLowerCase();
+      }
+
+      return passFirstNameFilter && passGenderFilter && passEmailFilter && passSecondNameFilter && passDepartmentFilter && passFieldOfStudyFilter && passRoomNumberFilter && passAcademicYearFilter;
     });
 
-    if (!this.departmentFilterInput && !this.fieldOfStudyFilterInput && this.roomNumberFilterInput === '' && this.academicYearFilterInput === '') {
+    if (!this.firstNameFilterInput && !this.emailFilterInput && !this.secondNameFilterInput && !this.departmentFilterInput && !this.departmentFilterInput && !this.fieldOfStudyFilterInput && !this.genderFilterInput && this.roomNumberFilterInput === '' && this.academicYearFilterInput === '') {
       this.students = this.originalStudents;
     }
   }

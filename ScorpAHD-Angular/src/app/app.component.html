@@ -2,7 +2,6 @@
     <mat-toolbar color="primary" class="navbar custom-toolbar">
         <span class="navbar-brand">ScorpAHD | Login</span>
         <span class="spacer"></span>
-        <!-- <button mat-button routerLink="/home" routerLinkActive="active" class="custom-button">Home</button> -->
         <button mat-button routerLink="/login" routerLinkActive="active" class="custom-button">Login</button>
     </mat-toolbar>
 </div>
@@ -22,7 +21,9 @@
         <span class="navbar-brand">ScorpAHD | Student</span>
         <span class="spacer"></span>
         <button mat-button routerLink="/student/profile" routerLinkActive="active" class="custom-button">Profile</button>
-        <button mat-button routerLink="/student/news" routerLinkActive="active" class="custom-button">News</button>
+        <button mat-button routerLink="/student/news" routerLinkActive="active" class="custom-button">News
+            <span class="notification-badge" *ngIf="eventCounter > 0">{{ eventCounter }}</span>
+        </button>
         <button mat-button (click)="logout()" class="custom-button">Logout</button>
     </mat-toolbar>
 </div>

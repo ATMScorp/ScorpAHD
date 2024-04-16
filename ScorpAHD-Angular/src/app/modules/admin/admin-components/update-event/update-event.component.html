@@ -39,6 +39,11 @@
           <mat-error *ngIf="eventForm.get('endTime')?.hasError('required')">This Input Is Required!</mat-error>
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Photo URL</mat-label>
+          <input matInput formControlName="photoUrl" placeholder="Photo URL">
+        </mat-form-field>
+
         <button mat-raised-button [class.active]="eventForm.valid" (click)="updateEvent()"
           [disabled]="eventForm.invalid">Update</button>
       </form>
