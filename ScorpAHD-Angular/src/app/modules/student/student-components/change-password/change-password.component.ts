@@ -45,7 +45,7 @@ export class ChangePasswordComponent {
 
   passwordStrengthValidator(control: FormControl): { [key: string]: any } | null {
     const value: string = control.value || '';
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d^$!%*?&_]{8,}$/;
 
     if (!value.match(passwordRegex)) {
       return { 'passwordStrength': true };
@@ -68,27 +68,12 @@ export class ChangePasswordComponent {
       return '';
     }
     const password = passwordControl.value;
-    if (password.length < 8) {
+    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^$!%*?&_]/.test(password)) {
       return 'red';
     } else if (password.length < 12) {
       return 'orange';
     } else {
       return 'green';
-    }
-  }
-
-  getPasswordStrengthIcon(): string {
-    const passwordControl = this.validateForm.get('password');
-    if (!passwordControl.value || passwordControl.hasError('required')) {
-      return '';
-    }
-    const password = passwordControl.value;
-    if (password.length < 8) {
-      return 'lock_open';
-    } else if (password.length < 12) {
-      return 'lock';
-    } else {
-      return 'lock_outline';
     }
   }
 
@@ -98,14 +83,14 @@ export class ChangePasswordComponent {
       return '';
     }
     const password = passwordControl.value;
-    if (password.length < 8) {
+    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^$!%*?&_]/.test(password)) {
       return 'Weak password';
     } else if (password.length < 12) {
       return 'Medium password';
     } else {
       return 'Strong password';
     }
-  }
+}
 
   changePassword() {
     this.studentService.changePassword(this.validateForm.value).subscribe(

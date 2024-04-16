@@ -71,7 +71,7 @@ mail:
 2. **Uruchom aplikację, wykonując polecenie `ng serve`.**
 3. **Aplikacja kliencka będzie dostępna pod adresem [http://localhost:4200](http://localhost:4200).**
 
-![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/22187ae9-c53d-4ca0-a826-3806e5d0ef39)
+![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/8d7cf782-b367-4a9a-a847-fb35f76f9c9c)
 
 
 ## Opis funkcji dostępnych dla admin'a
@@ -81,7 +81,7 @@ mail:
 - **Opis:** Ta funkcja pozwala administratorowi dodać nowego studenta do bazy danych.
 - **Endpoint:** `POST /admin/student`
 - **Instrukcje:** Aby dodać nowego studenta, administrator musi wypełnić formularz zawierający dane nowego studenta, takie jak imię, nazwisko, adres e-mail, numer telefonu, itp. Po wypełnieniu formularza i zatwierdzeniu, nowy student zostanie dodany do bazy danych.
-  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/dc805b01-4efe-430f-8cc9-5503aba49d0f)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/c1d75f18-9421-43dd-8515-a049d4f96089)
   ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/333c53f7-2083-49bb-9407-426bceb46812)
   
 ### Pobieranie listy studentów
@@ -89,8 +89,8 @@ mail:
 - **Opis:** Ta funkcja pozwala administratorowi pobrać listę wszystkich studentów z bazy danych.
 - **Endpoint:** `GET /admin/dashboard`
 - **Instrukcje:** Po wywołaniu tego endpointu, administrator otrzyma listę wszystkich studentów znajdujących się w systemie wraz z ich danymi osobowymi, takimi jak imię, nazwisko, adres e-mail, numer telefonu, itp.
-  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/285d955f-8000-4ca9-9047-a87fb1d833b5)
-  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/70a80436-8ee4-427e-8648-df09844f1f41)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/5d4acde7-aaa3-420c-998f-00b2d33affd3)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/af60f9c7-3ce4-4e13-a6a4-1e062133f1d3)
 
 ### Aktualizacja danych studenta
 
@@ -105,7 +105,7 @@ mail:
 - **Opis:** Ta funkcja pozwala administratorowi usunąć istniejącego studenta z bazy danych.
 - **Endpoint:** `DELETE /admin/dashboard/{studentId}`
 - **Instrukcje:** Administrator musi wybrać studenta, którego chce usunąć, a następnie potwierdzić operację usuwania. Po potwierdzeniu, student zostanie usunięty z bazy danych.
-  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/12c376ff-ab98-4e4b-84a1-60b35bb44600)
+  ![image](https://github.com/ATMScorp/ScorpAHD/assets/149021941/c46aeb0c-1438-40ec-a0b8-5a81e7ced916)
 
 ### Wysyłanie wiadomości e-mail
 
