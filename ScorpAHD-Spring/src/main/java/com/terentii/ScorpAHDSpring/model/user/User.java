@@ -1,9 +1,8 @@
 package com.terentii.ScorpAHDSpring.model.user;
 
 import com.terentii.ScorpAHDSpring.model.Role;
-import com.terentii.ScorpAHDSpring.model.Token;
-import com.terentii.ScorpAHDSpring.model.user.StudentDto;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +11,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
@@ -56,10 +56,6 @@ public class User implements UserDetails {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
-
-
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
 
     public User() {
     }
@@ -140,14 +136,6 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    public List<Token> getTokens() {
-        return tokens;
-    }
-
-    public void setTokens(List<Token> tokens) {
-        this.tokens = tokens;
     }
 
     public Date getDateOfBirth() {

@@ -7,14 +7,25 @@ import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.mail.internet.MimeMessage;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -134,6 +145,55 @@ public class AdminServiceImpl implements AdminService {
         List<User> users = userRepository.findAll();
         for (User user : users) {
             sendMail(user.getEmail(), null, subject, body, files);
+        }
+    }
+
+    public ResponseEntity<byte[]> exportStudentsToExcel() {
+        List<StudentDto> students = getAllStudents();
+        byte[] excelContent = generateExcel(students);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+        headers.setContentDispositionFormData("attachment", "students.xlsx");
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+
+        return new ResponseEntity<>(excelContent, headers, HttpStatus.OK);
+    }
+
+    private byte[] generateExcel(List<StudentDto> students) {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Students");
+
+            Row headerRow = sheet.createRow(0);
+            String[] columns = {"ID", "First Name", "Second Name", "Email", "Department", "Field of Study",
+                    "Date of Birth", "Address", "Gender", "Room Number", "Academic Year"};
+            for (int i = 0; i < columns.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(columns[i]);
+            }
+
+            int rowNum = 1;
+            for (StudentDto student : students) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(student.getId());
+                row.createCell(1).setCellValue(student.getFirstName());
+                row.createCell(2).setCellValue(student.getSecondName());
+                row.createCell(3).setCellValue(student.getEmail());
+                row.createCell(4).setCellValue(student.getDepartment());
+                row.createCell(5).setCellValue(student.getFieldOfStudy());
+                row.createCell(6).setCellValue(student.getDateOfBirth().toString());
+                row.createCell(7).setCellValue(student.getAddress());
+                row.createCell(8).setCellValue(student.getGender());
+                row.createCell(9).setCellValue(student.getRoomNumber());
+                row.createCell(10).setCellValue(student.getAcademicYear());
+            }
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            workbook.write(outputStream);
+            return outputStream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

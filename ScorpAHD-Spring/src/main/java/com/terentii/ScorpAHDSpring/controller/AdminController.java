@@ -160,4 +160,14 @@ public class AdminController {
             throw new AccessDeniedException("You do not have permission to access this resource.");
         }
     }
+
+    @GetMapping("/export-students")
+    public ResponseEntity<byte[]> exportStudentsToExcel() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            return adminService.exportStudentsToExcel();
+        } else {
+            throw new AccessDeniedException("You do not have permission to access this resource.");
+        }
+    }
 }

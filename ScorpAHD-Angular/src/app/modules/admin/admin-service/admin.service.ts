@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from '../../../auth/services/storage/storage.service';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 const BASIC_URL = "http://localhost:8080/";
 
@@ -109,6 +109,13 @@ export class AdminService {
   updateEvent(eventId: number, eventDto: any): Observable<any> {
     return this.http.put<any>(`${BASIC_URL}admin/event/${eventId}`, eventDto, {
       headers: this.createAuthorizationHeader(),
+    });
+  }   
+
+  exportStudentsToExcel(): Observable<Blob> {
+    return this.http.get(BASIC_URL + "admin/export-students", {
+      headers: this.createAuthorizationHeader(),
+      responseType: 'blob',
     });
   }
   

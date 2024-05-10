@@ -20,10 +20,13 @@ export class PhotoModalComponent {
 
   onWheel(event: WheelEvent): void {
     event.preventDefault();
+    const minZoom = 0.5;
+    const maxZoom = 2;
+  
     if (event.deltaY > 0) {
-      this.zoomValue -= 0.1;
+      this.zoomValue = Math.max(minZoom, this.zoomValue - 0.1);
     } else {
-      this.zoomValue += 0.1;
+      this.zoomValue = Math.min(maxZoom, this.zoomValue + 0.1);
     }
   }
 }

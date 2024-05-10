@@ -10,6 +10,7 @@ import { UpdateEventComponent } from './admin-components/update-event/update-eve
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent, canActivate: [AdminGuard] },
+  { path: "export-students", component: DashboardComponent, canActivate: [AdminGuard] },
   { path: "student", component: PostStudentComponent, canActivate: [AdminGuard] },
   { path: "dashboard/update/:studentId", component: UpdateStudentComponent, canActivate: [AdminGuard] },
   { path: "send", component: SendMailComponent, canActivate: [AdminGuard] },

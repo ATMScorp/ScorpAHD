@@ -9,6 +9,11 @@
     <mat-toolbar color="primary" class="navbar custom-toolbar">
         <span class="navbar-brand">ScorpAHD | Admin</span>
         <span class="spacer"></span>
+        <button mat-button (click)="exportToExcel()" class="custom-button">
+            <mat-icon>
+                download
+            </mat-icon>
+        </button>
         <button mat-button routerLink="/admin/dashboard" routerLinkActive="active" class="custom-button">Dashboard</button>
         <button mat-button routerLink="/admin/student" routerLinkActive="active" class="custom-button">Post</button>
         <button mat-button routerLink="/admin/send" routerLinkActive="active" class="custom-button">Send</button>

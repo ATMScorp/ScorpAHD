@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { StorageService } from './auth/services/storage/storage.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { saveAs } from 'file-saver';
 import { StudentService } from './modules/student/student-service/student.service';
+import { AdminService } from './modules/admin/admin-service/admin.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,8 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private studentService: StudentService
+    private studentService: StudentService,
+    private adminService: AdminService
   ){}
 
   ngOnInit(){
@@ -52,6 +55,17 @@ export class AppComponent {
       },
       error: (error) => {
         console.error("Error fetching events:", error);
+      }
+    });
+  }
+
+  exportToExcel(): void {
+    this.adminService.exportStudentsToExcel().subscribe({
+      next: (data: Blob) => {
+        saveAs(data, 'students.xlsx');
+      },
+      error: (error: any) => {
+        console.error('Error exporting students to Excel:', error);
       }
     });
   }
