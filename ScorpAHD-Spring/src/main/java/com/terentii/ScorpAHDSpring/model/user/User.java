@@ -1,6 +1,7 @@
 package com.terentii.ScorpAHDSpring.model.user;
 
 import com.terentii.ScorpAHDSpring.model.Role;
+import com.terentii.ScorpAHDSpring.model.Token;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -53,6 +54,9 @@ public class User implements UserDetails {
 
     @Column(name = "room_number")
     private String roomNumber;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Token> tokens;
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
