@@ -15,6 +15,7 @@ export class ChangePasswordComponent implements OnInit {
   validateForm!: FormGroup;
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
+  hideCurrentPassword: boolean = true;
 
   constructor(
     private studentService: StudentService,
@@ -24,6 +25,7 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
+      currentPassword: ['', [Validators.required]],
       password: ['', [Validators.required, this.passwordStrengthValidator]],
       checkPassword: ['', [Validators.required, this.comfirmationValidator]],
     });
@@ -33,12 +35,11 @@ export class ChangePasswordComponent implements OnInit {
     });
 
     this.getStudentById();
-}
+  }
 
   getStudentById() {
     this.studentService.getStudentById().subscribe((res) => {
-      const student = res.studentDto;
-      this.validateForm.patchValue(student);
+      this.student = res;
     })
   }
 
@@ -48,6 +49,10 @@ export class ChangePasswordComponent implements OnInit {
 
   toggleConfirmPasswordVisibility(): void {
     this.hideConfirmPassword = !this.hideConfirmPassword;
+  }
+
+  toggleCurrentPasswordVisibility(): void {
+    this.hideCurrentPassword = !this.hideCurrentPassword;
   }
 
   passwordStrengthValidator(control: FormControl): { [key: string]: any } | null {
@@ -101,8 +106,12 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     if (this.validateForm.valid && this.validateForm.value.password == this.validateForm.value.checkPassword) {
-      this.studentService.changePassword(this.validateForm.value).subscribe(
-        (res) => {
+      const formData = {
+        currentPassword: this.validateForm.value.currentPassword,
+        newPassword: this.validateForm.value.password
+      };
+      this.studentService.changePassword(formData).subscribe({
+        next: (res) => {
           if (res.id != null) {
             this.snackBar.open("Password updated successfully.", "Close", { duration: 5000 });
             this.getStudentById();
@@ -110,9 +119,17 @@ export class ChangePasswordComponent implements OnInit {
           } else {
             this.snackBar.open("Student not found.", "Close", { duration: 5000 });
           }
+        },
+        error: (error) => {
+          if (error) {
+            this.snackBar.open("Invalid current password. Please enter the correct current password.", "Close", { duration: 5000 });
+          } else {
+            this.snackBar.open("Something went wrong. Please try again later.", "Close", { duration: 5000 });
+          }
         }
-      )
+      });
     }
   }
-
+  
+  
 }

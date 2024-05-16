@@ -4,7 +4,7 @@
             <h1 class="form-title">Login</h1>
             <div class="description">Service for the administration and residents of the academic dormitory</div>
             <form class="login-form" [formGroup]="loginForm">
-
+                
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label class="label-container"><mat-icon class="icon">person</mat-icon>Email</mat-label>
                     <input matInput type="email" placeholder="Enter Email" formControlName="email"/>
@@ -22,6 +22,7 @@
                 </mat-form-field>
 
                 <button mat-raised-button [class.active]="loginForm.valid" (click)="login()" [disabled]="loginForm.invalid">Log in</button>
+                <button mat-button class="forgot-password-button" (click)="forgotPassword()">Forgot password?</button>
             </form>
         </div>
     </div>

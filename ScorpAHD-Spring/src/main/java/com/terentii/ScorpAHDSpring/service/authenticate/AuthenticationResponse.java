@@ -1,4 +1,4 @@
-package com.terentii.ScorpAHDSpring.model;
+package com.terentii.ScorpAHDSpring.service.authenticate;
 
 public class AuthenticationResponse {
     private String token;

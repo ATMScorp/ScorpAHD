@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent, canActivate: [StudentGuard]},
   { path: "update", component: UpdateStudentComponent, canActivate: [StudentGuard]},
   { path: "news", component: NewsComponent, canActivate: [StudentGuard]},
-  { path: "password", component: ChangePasswordComponent, canActivate: [StudentGuard]}
+  { path: "change-password", component: ChangePasswordComponent, canActivate: [StudentGuard]}
 ];
 
 @NgModule({

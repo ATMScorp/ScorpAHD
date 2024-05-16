@@ -4,17 +4,19 @@ import com.terentii.ScorpAHDSpring.model.user.SingleStudentDto;
 import com.terentii.ScorpAHDSpring.model.user.StudentDto;
 import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
     private final UserRepository userRepository;
+
+    public StudentServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public SingleStudentDto getStudentById(Long studentId) {
@@ -45,19 +47,22 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public StudentDto changePassword(Long studentId, StudentDto studentDto) {
+    public StudentDto changePassword(Long studentId, String currentPassword, String newPassword) {
         Optional<User> optionalUser = userRepository.findById(studentId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-
-            user.setPassword(new BCryptPasswordEncoder().encode(studentDto.getPassword()));
-
-            User updatedStudent = userRepository.save(user);
-
-            StudentDto updatedStudentDto = new StudentDto();
-            updatedStudentDto.setId(updatedStudent.getId());
-            return updatedStudentDto;
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (encoder.matches(currentPassword, user.getPassword())) {
+                user.setPassword(encoder.encode(newPassword));
+                User updatedStudent = userRepository.save(user);
+                StudentDto updatedStudentDto = new StudentDto();
+                updatedStudentDto.setId(updatedStudent.getId());
+                return updatedStudentDto;
+            } else {
+                throw new IllegalArgumentException("Current password is incorrect.");
+            }
         }
         return null;
     }
+
 }

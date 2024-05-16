@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { StorageService } from '../storage/storage.service';
 
-const BASIC_URL = 'http://localhost:8080';
+const BASIC_URL = 'https://localhost:8080';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,14 @@ export class AuthService {
       );
   }
 
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post<any>(BASIC_URL + '/forgot-password', { email });
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post<any>(BASIC_URL + '/reset-password', { token, newPassword });
+  }
+
   private handleAuthentication(response: any): void {
     const token = response.headers.get('Authorization');
     this.storage.saveToken(token);
@@ -34,5 +42,3 @@ export class AuthService {
     console.log(message);
   }
 }
-
-

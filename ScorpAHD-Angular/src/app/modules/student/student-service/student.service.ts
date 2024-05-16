@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from '../../../auth/services/storage/storage.service';
 
-const BASIC_URL = "http://localhost:8080/";
+const BASIC_URL = "https://localhost:8080/";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class StudentService {
     })
   }
 
-  updateStudent(studentLeaveDto):Observable<any> {
+  updateStudent(studentLeaveDto): Observable<any> {
     return this.http.post<any>(`${BASIC_URL}student/update/${StorageService.getUserId()}`, studentLeaveDto, {
       headers: this.createAuthorizationHeader(),
     });
@@ -30,8 +30,8 @@ export class StudentService {
     });
   }
 
-  changePassword(studentLeaveDto):Observable<any> {
-    return this.http.post<any>(`${BASIC_URL}student/password/${StorageService.getUserId()}`, studentLeaveDto, {
+  changePassword(formData): Observable<any> {
+    return this.http.post<any>(`${BASIC_URL}student/change-password/${StorageService.getUserId()}`, formData, {
       headers: this.createAuthorizationHeader(),
     });
   }

@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent {
@@ -62,6 +62,22 @@ export class LoginComponent {
       }
     });
   }
+
+  forgotPassword() {
+    const email = prompt("Please enter your email address:");
+    if (email) {
+      this.service.forgotPassword(email).subscribe({
+        next: () => {
+          this.snackbar.open("Password reset email sent.", "Close", { duration: 5000 });
+        },
+        error: (error) => {
+          console.error("Error sending password reset email:", error);
+          this.snackbar.open("Error sending password reset email.", "Close", { duration: 5000 });
+        }
+      });
+    }
+  }
+  
 
   openSnackbar() {
     this.snackbar.open(this.errorMessage, "Close", {

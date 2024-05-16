@@ -8,5 +8,5 @@ public interface StudentService {
 
     StudentDto updateStudent(Long studentId, StudentDto studentDto);
 
-    StudentDto changePassword(Long studentId, StudentDto studentDto);
+    StudentDto changePassword(Long studentId, String currentPassword, String newPassword);
 }

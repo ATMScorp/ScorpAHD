@@ -3,6 +3,7 @@ package com.terentii.ScorpAHDSpring.controller;
 import com.terentii.ScorpAHDSpring.model.event.EventDto;
 import com.terentii.ScorpAHDSpring.model.user.SingleStudentDto;
 import com.terentii.ScorpAHDSpring.model.user.StudentDto;
+import com.terentii.ScorpAHDSpring.service.changePassword.ChangePasswordRequest;
 import com.terentii.ScorpAHDSpring.service.event.EventService;
 import com.terentii.ScorpAHDSpring.service.student.StudentService;
 import org.springframework.http.HttpStatus;
@@ -65,16 +66,16 @@ public class StudentController {
         }
     }
 
-    @PostMapping("/password/{studentId}")
-    public ResponseEntity<?> changePassword(@PathVariable Long studentId, @RequestBody StudentDto studentDto){
+    @PostMapping("/change-password/{studentId}")
+    public ResponseEntity<?> changePassword(@PathVariable Long studentId, @RequestBody ChangePasswordRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("USER"))) {
-            StudentDto createdStudentDto = studentService.changePassword(studentId, studentDto);
-            if (createdStudentDto == null)
-                return new ResponseEntity<>("Something went wrong.", HttpStatus.BAD_REQUEST);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdStudentDto);
+            StudentDto changedStudentDto = studentService.changePassword(studentId, request.getCurrentPassword(), request.getNewPassword());
+            return ResponseEntity.status(HttpStatus.CREATED).body(changedStudentDto);
         } else {
             throw new AccessDeniedException("You do not have permission to access this resource.");
         }
     }
+
+
 }

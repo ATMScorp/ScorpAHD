@@ -12,11 +12,14 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './auth/login/login.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,
@@ -30,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
         MatSlideToggleModule,
         MatInputModule,
         MatSnackBarModule,
-        MatIconModule
+        MatIconModule,
+        MatProgressSpinnerModule
     ],
     providers: [],
     bootstrap: [AppComponent]

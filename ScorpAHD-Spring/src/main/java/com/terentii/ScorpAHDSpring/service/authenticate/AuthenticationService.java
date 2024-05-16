@@ -1,17 +1,20 @@
-package com.terentii.ScorpAHDSpring.service;
+package com.terentii.ScorpAHDSpring.service.authenticate;
 
 
-import com.terentii.ScorpAHDSpring.model.AuthenticationResponse;
 import com.terentii.ScorpAHDSpring.model.Token;
 import com.terentii.ScorpAHDSpring.model.user.User;
 import com.terentii.ScorpAHDSpring.repository.TokenRepository;
 import com.terentii.ScorpAHDSpring.repository.UserRepository;
+import com.terentii.ScorpAHDSpring.service.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthenticationService {
@@ -90,5 +93,28 @@ public class AuthenticationService {
         token.setLoggedOut(false);
         token.setUser(user);
         tokenRepository.save(token);
+    }
+
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public String generatePasswordResetToken(User user) {
+        String token = UUID.randomUUID().toString();
+        user.setResetToken(token);
+        userRepository.save(user);
+        return token;
+    }
+
+    public boolean resetPassword(String token, String newPassword) {
+        Optional<User> optionalUser = userRepository.findByResetToken(token);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+            user.setResetToken(null);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 }
