@@ -1,13 +1,21 @@
 <div *ngIf="!isAdminLoggedIn && !isStudentLoggedIn">
     <mat-toolbar color="primary" class="navbar custom-toolbar">
-        <span class="navbar-brand">ScorpAHD | Login</span>
+        <a class="navbar-brand" href="/login">ScorpAHD | Login</a>
+        <button mat-button class="custom-button" (click)="scrollToPage('about')">About</button>
+        <button mat-button class="custom-button" (click)="scrollToPage('info')">Info</button>
+        <button mat-button class="custom-button" (click)="scrollToPage('contact')">Contact</button>
         <span class="spacer"></span>
         <button mat-button routerLink="/login" routerLinkActive="active" class="custom-button">Login</button>
     </mat-toolbar>
 </div>
 <div *ngIf="isAdminLoggedIn">
     <mat-toolbar color="primary" class="navbar custom-toolbar">
-        <span class="navbar-brand">ScorpAHD | Admin</span>
+        <a class="navbar-brand" href="/admin/dashboard">ScorpAHD | Admin</a>
+        <button mat-button class="custom-button" matTooltip="Projekt dyplomowy zrealizowany przez Aliaksandr Trukhanovich, student kierunku Informatyka (I stopnia), w ramach seminarium Sieciowe technologie ochrony danych." matTooltipPosition="above">
+            <mat-icon>
+                information
+            </mat-icon>
+        </button>
         <span class="spacer"></span>
         <button mat-button (click)="exportToExcel()" class="custom-button">
             <mat-icon>
@@ -23,7 +31,12 @@
 </div>
 <div *ngIf="isStudentLoggedIn">
     <mat-toolbar color="primary" class="navbar custom-toolbar">
-        <span class="navbar-brand">ScorpAHD | Student</span>
+        <a class="navbar-brand" href="/student/profile">ScorpAHD | Student</a>
+        <button mat-button class="custom-button" matTooltip="Projekt dyplomowy zrealizowany przez Aliaksandr Trukhanovich, student kierunku Informatyka (I stopnia), w ramach seminarium Sieciowe technologie ochrony danych." matTooltipPosition="above">
+            <mat-icon>
+                information
+            </mat-icon>
+        </button>
         <span class="spacer"></span>
         <button mat-button routerLink="/student/profile" routerLinkActive="active" class="custom-button">Profile</button>
         <button mat-button routerLink="/student/news" routerLinkActive="active" class="custom-button">News

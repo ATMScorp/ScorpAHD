@@ -11,128 +11,57 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class PostStudentComponent {
 
   FIELD_OF_STUDY: { [key: string]: string[] } = {
-    "Wydział Teologii": ["Licentiate Programme in Systematic Theology", 
-                          "Nauki o rodzinie (stacjonarne I stopnia)",
-                          "Nauki o rodzinie (stacjonarne I stopnia) w Filii KUL w Stalowej Woli",
-                          "Nauki o rodzinie (stacjonarne II stopnia)"
-                        ],
-    "Wydział Prawa, Prawa Kanonicznego i Administracji": ["Administracja (stacjonarne I stopnia)",
-                                                          "Administracja (stacjonarne II stopnia)",
-                                                          "Europeistyka - grupa w języku angielskim (stacjonarne I stopnia)",
-                                                          "Prawo Kanoniczne (niestacjonarne jednolite magisterskie)",
-                                                          "Prawo Kanoniczne (stacjonarne jednolite magisterskie)",
-                                                          "Prawo (niestacjonarne jednolite magisterskie)",
-                                                          "Prawo (stacjonarne jednolite magisterskie)",
-                                                          "Prawo Unii Europejskiej - grupa w języku angielskim (stacjonarne II stopnia)",
-                                                          "Prawo w biznesie (stacjonarne I stopnia)",
-                                                          "Prawo w biznesie (stacjonarne II stopnia)"
-                                                        ],
-    "Wydział Filozofii" : ["Applied Anthropology (stacjonarne I stopnia)",
-                           "Filozofia - grupa w języku angielskim (stacjonarne I stopnia)",
-                           "Filozofia - grupa w języku angielskim (stacjonarne II stopnia)",
-                           "Filozofia (stacjonarne I stopnia)",
-                           "Filozofia (stacjonarne II stopnia)",
-                           "Kognitywistyka (stacjonarne I stopnia)",
-                           "Kognitywistyka (stacjonarne II stopnia)",
-                           "Retoryka stosowana (stacjonarne I stopnia)",
-                           "Retoryka stosowana (stacjonarne II stopnia)",
-                           "Sztuczna Inteligencja (stacjonarne I stopnia)"
-
+    "Department of Computer Science": [
+      "Software Engineering (Bachelor's)",
+      "Data Science (Bachelor's)",
+      "Cybersecurity (Bachelor's)",
+      "Artificial Intelligence (Master's)",
+      "Computer Networks (Master's)"
     ],
-    "Wydział Nauk Humanistycznych" : ["Edytorstwo (stacjonarne I stopnia)",
-                                      "Filologia Angielska (niestacjonarne I stopnia)",
-                                      "Filologia Angielska (niestacjonarne II stopnia)",
-                                      "Filologia Angielska (stacjonarne I stopnia)",
-                                      "Filologia Angielska (stacjonarne II stopnia)",
-                                      "Filologia Germańska (stacjonarne I stopnia)",
-                                      "Filologia Germańska (stacjonarne II stopnia)",
-                                      "Filologia Klasyczna (stacjonarne I stopnia)",
-                                      "Filologia Klasyczna (stacjonarne II stopnia)",
-                                      "Filologia Niderlandzka (stacjonarne I stopnia)",
-                                      "Filologia Niderlandzka (stacjonarne II stopnia)",
-                                      "Filologia Polska (stacjonarne I stopnia)",
-                                      "Filologia Polska (stacjonarne II stopnia)",
-                                      "Filologia Romańska (stacjonarne I stopnia)",
-                                      "Filologia Romańska (stacjonarne II stopnia)",
-                                      "Germanistyka (stacjonarne I stopnia)",
-                                      "Hispanistyka (stacjonarne I stopnia)",
-                                      "Hispanistyka (stacjonarne II stopnia)",
-                                      "Historia (stacjonarne I stopnia)",
-                                      "Historia (stacjonarne II stopnia)",
-                                      "Historia Sztuki (stacjonarne I stopnia)",
-                                      "Historia Sztuki (stacjonarne II stopnia)",
-                                      "Humanistyka cyfrowa (stacjonarne II stopnia)",
-                                      "Italianistyka - grupa hybrydowa (stacjonarne I stopnia)",
-                                      "Italianistyka (stacjonarne I stopnia)",
-                                      "Krajoznawstwo i turystyka kulturowa (stacjonarne I stopnia)",
-                                      "Lingwistyka stosowana (stacjonarne I stopnia)",
-                                      "Lingwistyka stosowana (stacjonarne II stopnia)",
-                                      "Muzykologia (stacjonarne I stopnia)",
-                                      "Muzykologia (stacjonarne II stopnia)",
-                                      "Romanistyka (stacjonarne I stopnia)",
-                                      "Sinologia (stacjonarne I stopnia)",
-                                      "Sinologia (stacjonarne II stopnia)",
-                                      "Turystyka kulturowa (stacjonarne II stopnia)"
+    "Department of Business Administration": [
+      "Business Management (Bachelor's)",
+      "Marketing (Bachelor's)",
+      "Finance and Accounting (Bachelor's)",
+      "International Business (Master's)",
+      "Entrepreneurship (Master's)"
     ],
-    "Wydział Nauk Społecznych" : ["Bezpieczeństwo narodowe (stacjonarne I stopnia)",
-                                  "Bezpieczeństwo narodowe (stacjonarne I stopnia) w Filii KUL w Stalowej Woli",
-                                  "Bezpieczeństwo narodowe (stacjonarne II stopnia)",
-                                  "Bezpieczeństwo narodowe (stacjonarne II stopnia) w Filii KUL w Stalowej Woli",
-                                  "Coaching i doradztwo kariery (stacjonarne I stopnia)",
-                                  "Doradztwo kariery i doradztwo personalne (stacjonarne I stopnia)",
-                                  "Dziennikarstwo i komunikacja społeczna (stacjonarne I stopnia)",
-                                  "Dziennikarstwo i komunikacja społeczna (stacjonarne II stopnia)",
-                                  "Ekonomia (stacjonarne I stopnia)",
-                                  "Ekonomia (stacjonarne II stopnia)",
-                                  "Kryminologia (stacjonarne I stopnia)",
-                                  "Kryminologia (stacjonarne II stopnia)",
-                                  "Pedagogika przedszkolna i wczesnoszkolna (stacjonarne jednolite magisterskie)",
-                                  "Pedagogika specjalna (stacjonarne II stopnia)",
-                                  "Pedagogika specjalna (stacjonarne jednolite magisterskie)",
-                                  "Pedagogika (stacjonarne I stopnia)",
-                                  "Pedagogika (stacjonarne II stopnia)",
-                                  "Praca socjalna i ekonomia społeczna (stacjonarne II stopnia)",
-                                  "Praca socjalna (stacjonarne I stopnia)",
-                                  "Psychologia (stacjonarne jednolite magisterskie)",
-                                  "Socjologia (stacjonarne I stopnia)",
-                                  "Socjologia (stacjonarne II stopnia)",
-                                  "Stosunki międzynarodowe - grupa w języku angielskim (stacjonarne II stopnia)",
-                                  "Stosunki międzynarodowe (stacjonarne I stopnia)",
-                                  "Stosunki międzynarodowe (stacjonarne II stopnia)",
-                                  "Zarządzanie (stacjonarne I stopnia)",
-                                  "Zarządzanie (stacjonarne II stopnia)"
+    "Department of Psychology": [
+      "Clinical Psychology (Bachelor's)",
+      "Educational Psychology (Bachelor's)",
+      "Counseling Psychology (Bachelor's)",
+      "Forensic Psychology (Master's)",
+      "Industrial-Organizational Psychology (Master's)"
     ],
-    "Wydział Medyczny" : ["Bioanalytical Technologies (stacjonarne II stopnia)",
-                          "Biotechnologia - grupa w języku angielskim (stacjonarne I stopnia)",
-                          "Biotechnologia - grupa w języku angielskim (stacjonarne II stopnia)",
-                          "Biotechnologia (stacjonarne I stopnia)",
-                          "Biotechnologia (stacjonarne II stopnia)",
-                          "Dietetyka (stacjonarne I stopnia) w Filii KUL w Stalowej Woli",
-                          "Kierunek lekarski (stacjonarne jednolite magisterskie)",
-                          "Pielęgniarstwo (niestacjonarne II stopnia)",
-                          "Pielęgniarstwo (stacjonarne I stopnia)",
-                          "Pielęgniarstwo (stacjonarne I stopnia) L",
-                          "Pielęgniarstwo (stacjonarne II stopnia)",
-                          "Położnictwo (stacjonarne I stopnia)"
+    "Department of Art and Design": [
+      "Graphic Design (Bachelor's)",
+      "Interior Design (Bachelor's)",
+      "Fine Arts (Bachelor's)",
+      "Fashion Design (Master's)",
+      "Digital Media Arts (Master's)"
     ],
-    "Wydział Nauk Przyrodniczych i Technicznych" : ["Architektura Krajobrazu (stacjonarne I stopnia) 7",
-                                                    "Architektura Krajobrazu (stacjonarne II stopnia) L",
-                                                    "Informatyka - grupa w języku angielskim (stacjonarne I stopnia)",
-                                                    "Informatyka (stacjonarne I stopnia)",
-                                                    "Informatyka (stacjonarne II stopnia)",
-                                                    "Inżynieria środowiska (stacjonarne I stopnia) w Filii KUL w Stalowej Woli",
-                                                    "Matematyka (stacjonarne I stopnia)"
+    "Department of Environmental Studies": [
+      "Environmental Science (Bachelor's)",
+      "Sustainable Development (Bachelor's)",
+      "Ecology (Bachelor's)",
+      "Environmental Policy (Master's)",
+      "Climate Change Studies (Master's)"
+    ],
+    "Department of Engineering": [
+      "Mechanical Engineering (Bachelor's)",
+      "Electrical Engineering (Bachelor's)",
+      "Civil Engineering (Bachelor's)",
+      "Biomedical Engineering (Master's)",
+      "Aerospace Engineering (Master's)"
     ]
   };
 
   DEPARTMENT: string[] = [
-    "Wydział Teologii", 
-    "Wydział Prawa, Prawa Kanonicznego i Administracji",
-    "Wydział Filozofii",
-    "Wydział Nauk Humanistycznych",
-    "Wydział Nauk Społecznych",
-    "Wydział Medyczny",
-    "Wydział Nauk Przyrodniczych i Technicznych"
+    "Department of Computer Science",
+    "Department of Business Administration",
+    "Department of Psychology",
+    "Department of Art and Design",
+    "Department of Environmental Studies",
+    "Department of Engineering"
   ];
 
   GENDER: string[] = [
@@ -143,9 +72,9 @@ export class PostStudentComponent {
   ACADEMIC_YEARS: string[] = ["I", "II", "III", "IV", "V"];
 
   ROOM_NUMBER: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                           "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-                           "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
-                           "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",];
+    "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
+    "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",];
 
   isSpinning: boolean;
   validateForm: FormGroup;
@@ -164,8 +93,8 @@ export class PostStudentComponent {
   constructor(
     private service: AdminService,
     private fb: FormBuilder,
-    private snackBar:  MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -200,7 +129,7 @@ export class PostStudentComponent {
       fieldOfStudyControl.clearValidators();
     }
   }
-  
+
 
   postStudent() {
     if (this.validateForm.valid) {

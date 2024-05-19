@@ -21,12 +21,12 @@ export class AppComponent {
     private router: Router,
     private studentService: StudentService,
     private adminService: AdminService
-  ){}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.updateUserLoggedStatus();
     this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd){
+      if (event instanceof NavigationEnd) {
         this.updateUserLoggedStatus();
       }
     })
@@ -42,7 +42,7 @@ export class AppComponent {
     }
   }
 
-  logout(){
+  logout() {
     StorageService.logout();
     this.updateUserLoggedStatus();
     this.router.navigateByUrl("/login");
@@ -68,5 +68,21 @@ export class AppComponent {
         console.error('Error exporting students to Excel:', error);
       }
     });
+  }
+
+  scrollToPage(sectionName: string) {
+    let sectionElement: HTMLElement | null = null;
+
+    if (sectionName === 'about') {
+      sectionElement = document.getElementById('about');
+    } else if (sectionName === 'info') {
+      sectionElement = document.getElementById('info')
+    } else if (sectionName === 'contact') {
+      sectionElement = document.getElementById('contact');
+    } 
+    
+    if (sectionElement) {
+      sectionElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

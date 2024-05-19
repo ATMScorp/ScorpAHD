@@ -8,6 +8,8 @@
     font-size: 20px;
     font-weight: 600;
     padding: 16px;
+    color: white;
+    text-decoration: none;
 }
 
 .spacer {
@@ -26,6 +28,7 @@ button.active {
 
 .custom-toolbar {
     background-color: #154874;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2), -3px -3px 5px 0px rgba(255, 255, 255, 0.2)
 }
 
 .custom-button:hover {

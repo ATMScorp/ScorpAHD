@@ -1,10 +1,9 @@
-<div class="bg">
+<div class="bg" style="background-image: url('assets/logo.png');">
     <div class="parent">
         <div class="child">
             <h1 class="form-title">Login</h1>
             <div class="description">Service for the administration and residents of the academic dormitory</div>
             <form class="login-form" [formGroup]="loginForm">
-                
                 <mat-form-field appearance="outline" class="form-field">
                     <mat-label class="label-container"><mat-icon class="icon">person</mat-icon>Email</mat-label>
                     <input matInput type="email" placeholder="Enter Email" formControlName="email"/>
@@ -27,3 +26,74 @@
         </div>
     </div>
 </div>
+
+<div class="section info" id="info">
+    <div class="section-inner">
+        <div class="text-image-container">
+            <img src="assets/info.jpg" alt="Info Image" class="side-image">
+            <div class="text-content">
+                <h2>Info</h2>
+                <p>Here you can find information about all the university departments and their contact details:</p>
+                <ul class="contact-list">
+                    <li>
+                        <strong>Department of Computer Science</strong><br>
+                        Address: ul.Example 123/101, Lublin<br>
+                        Contact: compsci{{'@'}}example.com<br>
+                        Phone: +48 123-000-111
+                    </li>
+                    <li>
+                        <strong>Department of Business Administration</strong><br>
+                        Address: ul.Example 123/102, Lublin<br>
+                        Contact: businessadmin{{'@'}}example.com<br>
+                        Phone: +48 123-000-222
+                    </li>
+                    <li>
+                        <strong>Department of Psychology</strong><br>
+                        Address: ul.Example 123/103, Lublin<br>
+                        Contact: psychology{{'@'}}example.com<br>
+                        Phone: +48 123-000-333
+                    </li>
+                    <li>
+                        <strong>Department of Art and Design</strong><br>
+                        Address: ul.Example 123/104, Lublin<br>
+                        Contact: artdesign{{'@'}}example.com<br>
+                        Phone: +48 123-000-444
+                    </li>
+                    <li>
+                        <strong>Department of Environmental Studies</strong><br>
+                        Address: ul.Example 123/105, Lublin<br>
+                        Contact: envstudies{{'@'}}example.com<br>
+                        Phone: +48 123-000-555
+                    </li>
+                    <li>
+                        <strong>Department of Engineering</strong><br>
+                        Address: ul.Example 123/106, Lublin<br>
+                        Contact: engineering{{'@'}}example.com<br>
+                        Phone: +48 123-000-666
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section contact" id="contact">
+    <div class="section-inner">
+        <div class="text-image-container">
+            <div class="text-content">
+                <h2>Contact</h2>
+                <p>If you need to get in touch with the administration, please contact us at:</p>
+                <p>Email: admin{{'@'}}example.com</p>
+                <p>Phone: +48 123-456-789</p>
+                <p>Address: Spokojna 2, 20-074 Lublin</p>
+            </div>
+            <img src="assets/contact.jpg" alt="Contact Image" class="side-image">
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <p>Projekt dyplomowy zrealizowany przez Aliaksandr Trukhanovich, student kierunku Informatyka (I stopnia), w ramach seminarium Sieciowe technologie ochrony danych.</p>
+    </div>
+</footer>
